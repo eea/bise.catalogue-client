@@ -1,0 +1,14 @@
+{
+    "name": "catalogue",
+    "version": "0.1.0",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-coffee",
+        "grunt-contrib-uglify",
+        "grunt-contrib-stylus",
+        "grunt-contrib-copy",
+        "grunt-contrib-watch",
+        "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-nodeunit": "~0.1.2"
+    }
+}
