@@ -1,0 +1,97 @@
+
+<div class="catalogue-toolbar">
+    <div class="select-field">
+        <select>
+            <option value="">All the Catalogue</option>
+            <option value="">Articles</option>
+            <option value="">Documents</option>
+            <option value="">News</option>
+            <option value="">Links</option>
+            <option value="">Sites</option>
+            <option value="">Habitats</option>
+            <option value="">Species</option>
+        </select>
+    </div>
+    <form id="catalogue-search-form">
+        <input id="query" name="query" type="text" class="input-medium search-query" placeholder="Search...">
+        <!-- <button type="submit" class="btn">Search</button> -->
+    </form>
+</div>
+
+
+<div class="catalogue-container">
+
+    <div class="catalogue-sidebar span4">
+        <div id="catalogue-queries" style="display: block; ">
+            <ul></ul>
+            <div id="results-count" style="text-align: right">About 0 results.</div>
+        </div>
+        <div id="catalogue-facets"></div>
+    </div>
+
+    <div class="catalogue-content span8">
+
+        <div class="catalogue-options">
+            <label>
+                Sort by
+            </label>
+            <div id="catalogue-sort" class="select-field" style="width: 120px; margin-right: 30px">
+                <select>
+                    <option>Date</option>
+                </select>
+            </div>
+            <label>
+                Per page
+            </label>
+            <div id="catalogue-per-page" class="select-field">
+                <select>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                </select>
+            </div>
+        </div>
+
+        <ul id="catalogue-results" style=""></ul>
+
+        <!--
+        <div class="pagination compact-theme simple-pagination">
+            <ul>
+                <li class="active">
+                    <span class="current prev">Prev</span>
+                </li>
+                <li class="active">
+                    <span class="current">1</span>
+                </li>
+                <li>
+                  <a href="#page-2" class="page-link">2 </a>
+                </li>
+                <li>
+                  <a href="#page-3" class="page-link">3 </a>
+                </li>
+                <li>
+                  <a href="#page-4" class="page-link">4 </a>
+                </li>
+                <li>
+                  <a href="#page-5" class="page-link">5 </a>
+                </li>
+
+                <li class="disabled">
+                  <span class="ellipse">… </span>
+                </li>
+                <li>
+                  <a href="#page-25236" class="page-link">25236</a>
+                </li>
+                <li>
+                  <a href="#page-25237" class="page-link">25237</a>
+                </li>
+                <li>
+                  <a href="#page-2" class="page-link next">Next</a>
+                </li>
+            </ul>
+        </div>
+        -->
+    </div>
+</div>
+
+

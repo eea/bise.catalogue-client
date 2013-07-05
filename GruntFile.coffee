@@ -1,4 +1,5 @@
 module.exports = (grunt) ->
+
   grunt.initConfig
 
     meta:
@@ -14,13 +15,6 @@ module.exports = (grunt) ->
               '*/\n'
 
     source:
-      coffee: [
-        'src/Catalogue.coffee',
-        'src/modules/Catalogue.Core.coffee',
-        'src/modules/Catalogue.Search.coffee',
-        'src/modules/Catalogue.Pagination.coffee',
-        'src/modules/Catalogue.Init.coffee'
-      ]
       stylus: [
         'src/stylesheets/catalogue.base.styl',
         'src/stylesheets/catalogue.layout.styl'
@@ -28,30 +22,18 @@ module.exports = (grunt) ->
         'src/stylesheets/catalogue.pagination.styl'
       ]
 
-    coffee:
-      core: files: 'target/<%=meta.file%><%=meta.version%>/<%=meta.file%>.debug.js': '<%= source.coffee %>'
-
-    uglify:
-      options: compress: false, banner: "<%= meta.banner %>"
-      engine: files: 'target/<%=meta.file%><%=meta.version%>/<%=meta.file%>.js': 'target/<%=meta.file%><%=meta.version%>/<%=meta.file%>.debug.js'
-
     stylus:
       core:
         options: compress: true, import: [ '__init']
-        files: 'target/<%=meta.file%><%=meta.version%>/<%=meta.file%>.debug.css': '<%=source.stylus%>'
+        files: 'src/catalogue.css': '<%=source.stylus%>'
 
     watch:
-      coffee:
-        files: ['<%= source.coffee %>']
-        tasks: ["coffee:core"]
       stylus:
         files: ['<%= source.stylus %>']
         tasks: ["stylus:core"]
 
-  grunt.loadNpmTasks "grunt-contrib-coffee"
-  grunt.loadNpmTasks "grunt-contrib-uglify"
   grunt.loadNpmTasks "grunt-contrib-stylus"
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-watch"
 
-  grunt.registerTask "default", ["coffee", "uglify", "stylus"]
+  grunt.registerTask "default", ["stylus"]

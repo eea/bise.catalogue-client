@@ -1,0 +1,31 @@
+<div class="catalogue-facet">
+
+  <legend><%= title.toUpperCase() %></legend>
+
+  <ul>
+
+    <% if (terms.length > 0){ %>
+
+      <% _.each(terms, function(t) { %>
+
+        <li>
+          <a href="#" class="facet-link" data-facet="<%= title %>" data-value="<%= t.term %>"><%= t.term %></a>
+          <span style="margin-left: 5px; color: #666666">
+            (<%= t.count %>)
+          </span>
+        </li>
+
+      <% }) %>
+
+    <% } else { %>
+
+      <li>
+        <p>No filters for this query.</p>
+      </li>
+
+    <% } %>
+
+  </ul>
+
+</div>
+
