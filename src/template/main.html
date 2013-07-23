@@ -14,7 +14,7 @@
     </div>
     <form id="catalogue-search-form">
         <input id="query" name="query" type="text" class="input-medium search-query" placeholder="Search...">
-        <!-- <button type="submit" class="btn">Search</button> -->
+        <button type="submit" class="btn" style="margin:none;vertical-align:top">Search</button>
     </form>
 </div>
 
@@ -31,28 +31,74 @@
 
     <div class="catalogue-content span8">
 
-        <div class="catalogue-options">
-            <label>
-                Sort by
-            </label>
-            <div id="catalogue-sort" class="select-field" style="width: 120px; margin-right: 30px">
-                <select>
-                    <option>Date</option>
-                </select>
+        <div class="row-fluid">
+            <div class="span5">
+                <div class="catalogue-options">
+                    <!--
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Sort by
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="catalogue-sort" class="dropdown-menu">
+                            <li>
+                                <a href="#">Published On</a>
+                            </li>
+                        </ul>
+                    </div>
+                    -->
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Per Page
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="catalogue-per-page" class="dropdown-menu">
+                            <li>
+                                <a href="#">10</a>
+                            </li>
+                            <li>
+                                <a href="#">20</a>
+                            </li>
+                            <li>
+                                <a href="#">30</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <label>
-                Per page
-            </label>
-            <div id="catalogue-per-page" class="select-field">
-                <select>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                </select>
+
+            <div class="span2 catalogue-status"></div>
+
+            <div class="span5">
+                <ul class="pager">
+                    <li class="disabled">
+                        <a class="p">Previous</a>
+                    </li>
+                    <li>
+                        <a class="n">Next</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
+
         <ul id="catalogue-results" style=""></ul>
+
+
+        <div class="row-fluid">
+            <div class="span8">
+            </div>
+            <div class="span4" style="padding-top: 8px">
+                <ul class="pager">
+                    <li class="disabled">
+                        <a class="p">Previous</a>
+                    </li>
+                    <li>
+                        <a class="n">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <!--
         <div class="pagination compact-theme simple-pagination">

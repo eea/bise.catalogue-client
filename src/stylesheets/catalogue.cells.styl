@@ -26,7 +26,7 @@ CELL_SMALL_COLOR = #999999
     width: 100%
 
     .cell-title
-        font-size: 12px
+        font-size: 14px
         font-family: Verdana
         color: #86a000
 
@@ -57,6 +57,89 @@ CELL_SMALL_COLOR = #999999
         // color: #86a000
         font-weight: bold
         font-style: normal
+
+
+    .preview
+        // border-left: 1px dashed #a5c500
+        // background: #e4e4e4
+        min-height: 100px
+
+
+
+
+
+
+
+
+
+
+
+
+.filetype
+    width: 150px
+    height: 150px
+    background-size: 150px 150px
+    background-repeat: none
+    background-image: url('./assets/filetypes/default.png')
+.pdf
+    @extend .filetype
+    background-image: url('./assets/filetypes/pdf.png')
+.rtf
+    @extend .filetype
+    background-image: url('./assets/filetypes/rtf.png')
+.word
+    @extend .filetype
+    background-image: url('./assets/filetypes/doc.png')
+.word2010
+    @extend .filetype
+    background-image: url('./assets/filetypes/docx.png')
+.csv
+    @extend .filetype
+    background-image: url('./assets/filetypes/csv.png')
+.excel
+    @extend .filetype
+    background-image: url('./assets/filetypes/xls.png')
+.excel2010
+    @extend .filetype
+    background-image: url('./assets/filetypes/xlsx.png')
+.powerpoint
+    @extend .filetype
+    background-image: url('./assets/filetypes/ppt.png')
+.powerpoint2010
+    @extend .filetype
+    background-image: url('./assets/filetypes/pptx.png')
+.plaintext
+    @extend .filetype
+    background-image: url('./assets/filetypes/txt.png')
+
+.mini-icon
+    width: 36px
+    height: 36px
+    background-size: 36px 36px
+    margin-right: 10px
+    border: 0px solid white
+    display: inline-block
+.normal-icon
+    width: 64px
+    height: 64px
+    background-size: 64px 64px
+    border: 0px solid white
+    display: inline-block
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

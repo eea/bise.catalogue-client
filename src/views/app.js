@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'collections/results', 'views/results', 'views/facet', 'text!template/main.html'],
-  function($, _, Backbone, ResultsCollection, ResultView, FacetView, mainTemplate){
+define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 'views/results', 'views/facet', 'text!template/main.html'],
+  function($, _, Backbone, Bootstrap, ResultsCollection, ResultView, FacetView, mainTemplate){
 
   var AppView = Backbone.View.extend({
 
@@ -16,17 +16,19 @@ define(['jquery', 'underscore', 'backbone', 'collections/results', 'views/result
     },
     events: {
       "submit #catalogue-search-form"     : "setQuery",
-      "change #catalogue-sort select"     : "setSorting",
-      "change #catalogue-per-page select" : "setPerPage"
+      "click #catalogue-sort li a"        : "setSorting",
+      "click #catalogue-per-page li a"    : "setPerPage",
+      "click .pager .p"                   : "goPrevPage",
+      "click .pager .n"                   : "goNextPage"
     },
 
-    initialize: function() {
+    initialize: function(options) {
       _.bindAll(this, 'addOne', 'addAll', 'render', 'mergeFacet')
 
       // Add main template
       $(this.$el.selector).append(this.mainTemplate)
 
-      this.Results = new ResultsCollection()
+      this.Results = new ResultsCollection(options['host'])
       this.Results.bind('add', this.addOne)
       this.Results.bind('reset', this.addAll)
       this.Results.bind('all', this.render)
@@ -40,6 +42,9 @@ define(['jquery', 'underscore', 'backbone', 'collections/results', 'views/result
 
     setQuery: function(e){
       e.preventDefault()
+      // Reset query
+      this.queryparams.page = 1
+
       this.queryparams.query = $('#catalogue-search-form input').val()
       $('#catalogue-search-form input').val('')
       this.runQuery()
@@ -51,15 +56,53 @@ define(['jquery', 'underscore', 'backbone', 'collections/results', 'views/result
     },
 
     setPerPage: function(e){
-      this.queryparams.per_page = $('#catalogue-per-page select').val()
+      this.queryparams.per_page = parseInt($(e.target).html()); //$('#catalogue-per-page select').val()
       this.runQuery()
       this.Results.fetch({ data: $.param(this.queryparams) })
+    },
+
+    goPrevPage: function(e){
+      if (this.queryparams.page > 1){
+        this.queryparams.page -= 1;
+        this.runQuery()
+        this.Results.fetch({ data: $.param(this.queryparams) })
+      }
+      if (this.queryparams.page === 1){
+        this.$el.find('.p').parent().addClass('disabled')
+      }
+      if (this.queryparams.page < this._getLastPage())
+          this.$el.find('.n').parent().removeClass('disabled')
+    },
+
+    goNextPage: function(e){
+      if (this.queryparams.page < this._getLastPage()){
+        this.queryparams.page += 1;
+        this.runQuery()
+        this.Results.fetch({ data: $.param(this.queryparams) })
+        if (this.queryparams.page > 1){
+          this.$el.find('.p').parent().removeClass('disabled')
+        }
+        if (this.queryparams.page == this._getLastPage())
+          this.$el.find('.n').parent().addClass('disabled')
+      }
+    },
+
+    _drawPagination: function(){
+      this.$el.find('.catalogue-status').html(this.queryparams.page + '/' + this._getLastPage())
+    },
+
+    _getLastPage: function(){
+      var pages = Math.floor(this.Results.total / this.queryparams.per_page)
+      if (this.Results.total % this.queryparams.per_page > 0)
+        pages += 1;
+      return pages;
     },
 
     render: function() {
       this._drawSearches()
       this._drawCount()
       this._drawFacets()
+      this._drawPagination()
     },
 
     _drawSearches: function(){

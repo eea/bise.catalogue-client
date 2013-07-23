@@ -5,6 +5,9 @@
       <% if (_type == "article"){%>
         Article
       <% } %>
+      <% if (_type == "document"){ %>
+        Document
+      <% } %>
       <% if (_type == "species"){ %>
         Species
       <% } %>
@@ -18,13 +21,20 @@
     </span>
 
     <div class="cell-title">
-      <% if (_type == "article") { %>
+      <% if (_type == "article" || _type == "document" || _type == "news" || _type == "link") { %>
         <a href="#"><%= title %></a>
       <% } %>
       <% if (_type == "species") { %>
         <a href="#"><%= binomial_name %></a>
       <% } %>
     </div>
+
+    <% if (title.length > 0 && title != english_title){ %>
+      <small>
+        <strong><%= english_title %></strong>
+      </small><br/>
+    <% } %>
+
     <small>
       <strong>By:</strong><%= author %>
     </small>

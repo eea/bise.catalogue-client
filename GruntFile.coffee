@@ -17,6 +17,7 @@ module.exports = (grunt) ->
     source:
       stylus: [
         'src/stylesheets/catalogue.base.styl',
+        'src/stylesheets/catalogue.bootstrap.styl',
         'src/stylesheets/catalogue.layout.styl'
         'src/stylesheets/catalogue.cells.styl',
         'src/stylesheets/catalogue.pagination.styl'
