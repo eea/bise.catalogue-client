@@ -80,6 +80,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     setPerPage: function(e){
+      this.queryparams.page = 1
       this.queryparams.per_page = parseInt($(e.target).html()); //$('#catalogue-per-page select').val()
       this.runQuery()
       this.Results.fetch({ data: $.param(this.queryparams) })
