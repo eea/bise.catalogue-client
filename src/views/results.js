@@ -66,6 +66,7 @@ define([
       if ($(this.el).find('.preview').length > 0){
         $(this.el).find('.preview').remove()
       } else {
+        this.$el.parent().find('.preview').remove()
         var d = $('<div class="preview">');
         $(this.el).find('.catalogue-cell').append(d)
       }
