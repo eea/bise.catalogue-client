@@ -38,5 +38,7 @@ require.config({
 });
 
 require(['views/app'], function(AppView){
-    window.Catalogue = new AppView({host: 'localhost:3000'});
+    window.Catalogue = new AppView({
+        host: 'localhost:3000'
+    })
 });

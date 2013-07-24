@@ -53,6 +53,9 @@ define([
       else if (m._type === "protected_area"){
         $(this.el).html(this.sit_tmpl(m))
       }
+      else if (m._type === "habitat"){
+        $(this.el).html(this.hab_tmpl(m))
+      }
       // save a reference to the DOM element to avoid extra lookups
       this.input = this.$('.cell');
       return this;

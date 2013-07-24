@@ -5,17 +5,28 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     el: $("#catalogue-app"),
     mainTemplate: _.template(mainTemplate),
-    areas: [
-      'All the Catalogue', 'Articles', 'Documents', 'News', 'Links',
-      'Sites', 'Habitats', 'Species'
-    ],
+
+    indexes: {
+      all: 'All the Catalogue',
+      articles: 'Articles',
+      documents: 'Documents',
+      news: 'News',
+      links: 'Links',
+      species: 'Species',
+      habitats: 'Habitat',
+      protected_area: 'Sites'
+    },
+
     queryparams: {
+      indexes: 'all',
       query: 'a',
       page: 1,
       per_page: 10
     },
+
     events: {
       "submit #catalogue-search-form"     : "setQuery",
+      "change #catalogue-area"            : "setArea",
       "click #catalogue-sort li a"        : "setSorting",
       "click #catalogue-per-page li a"    : "setPerPage",
       "click .pager .p"                   : "goPrevPage",
@@ -27,6 +38,13 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
       // Add main template
       $(this.$el.selector).append(this.mainTemplate)
+
+      // Fill areas in select
+      var areas = $("#catalogue-area")
+      for (var k in this.indexes){
+        opt = $("<option>").val(k).html(this.indexes[k])
+        areas.append(opt)
+      }
 
       this.Results = new ResultsCollection(options['host'])
       this.Results.bind('add', this.addOne)
@@ -47,6 +65,11 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
       this.queryparams.query = $('#catalogue-search-form input').val()
       $('#catalogue-search-form input').val('')
+      this.runQuery()
+    },
+
+    setArea: function(e){
+      this.queryparams.indexes = $('#catalogue-area').val()
       this.runQuery()
     },
 
