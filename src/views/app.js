@@ -10,11 +10,11 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       all: 'All the Catalogue',
       articles: 'Articles',
       documents: 'Documents',
-      news: 'News',
-      links: 'Links',
+      // news: 'News',
+      // links: 'Links',
       species: 'Species',
       habitats: 'Habitat',
-      protected_area: 'Sites'
+      protected_areas: 'Sites'
     },
 
     queryparams: {
