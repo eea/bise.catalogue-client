@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     queryparams: {
       indexes: 'all',
-      query: 'a',
+      query: '',
       page: 1,
       per_page: 10
     },
@@ -69,6 +69,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     setArea: function(e){
+      this.queryparams.page = 1
       this.queryparams.indexes = $('#catalogue-area').val()
       this.runQuery()
     },
@@ -90,11 +91,6 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         this.runQuery()
         this.Results.fetch({ data: $.param(this.queryparams) })
       }
-      if (this.queryparams.page === 1){
-        this.$el.find('.p').parent().addClass('disabled')
-      }
-      if (this.queryparams.page < this._getLastPage())
-          this.$el.find('.n').parent().removeClass('disabled')
     },
 
     goNextPage: function(e){
@@ -102,16 +98,21 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         this.queryparams.page += 1;
         this.runQuery()
         this.Results.fetch({ data: $.param(this.queryparams) })
-        if (this.queryparams.page > 1){
-          this.$el.find('.p').parent().removeClass('disabled')
-        }
-        if (this.queryparams.page == this._getLastPage())
-          this.$el.find('.n').parent().addClass('disabled')
       }
     },
 
     _drawPagination: function(){
       this.$el.find('.catalogue-status').html(this.queryparams.page + '/' + this._getLastPage())
+
+      if (this.queryparams.page == 1)
+        this.$('.p').parent().addClass('disabled')
+      else
+        this.$('.p').parent().removeClass('disabled')
+
+      if (this.queryparams.page == this._getLastPage())
+        this.$('.n').parent().addClass('disabled')
+      else
+        this.$('.n').parent().removeClass('disabled')
     },
 
     _getLastPage: function(){
@@ -122,21 +123,40 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     render: function() {
-      this._drawSearches()
-      this._drawCount()
-      this._drawFacets()
-      this._drawPagination()
+      if (this.Results.total == 0){
+        this.hideContainer()
+      } else {
+        this.showContainer()
+        this._drawSearches()
+        this._drawCount()
+        this._drawFacets()
+        this._drawPagination()
+      }
+    },
+
+    hideContainer: function(){
+      this.$('.catalogue-container').hide()
+    },
+
+    showContainer: function(){
+      this.$('.catalogue-container').show()
     },
 
     _drawSearches: function(){
-      close = $('<span>').addClass('close').html('✖')
-      li = $('<li>').append(close).append(this.queryparams.query)
-      this.$('#catalogue-queries ul').html(li)
+      if (this.queryparams.query != ''){
+        close = $('<span>').addClass('close').html('✖')
+        li = $('<li>').append(close).append(this.queryparams.query)
+        this.$('#catalogue-queries ul').html(li)
+      } else {
+        this.$('#catalogue-queries ul').html('')
+      }
     },
 
     _drawCount: function(){
-      count = 'About <strong>' + this.Results.total + '</strong> results.'
-      this.$('#results-count').html(count)
+      if (this.Results.total == undefined)
+        this.$('#results-count').html("No search")
+      else
+        this.$('#results-count').html('About <strong>' + this.Results.total + '</strong> results.')
     },
 
     _drawFacets: function(){
