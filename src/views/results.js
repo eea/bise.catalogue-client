@@ -37,14 +37,23 @@ define([
       this.model.bind('destroy', this.remove, this);
     },
 
+    formatDate: function(dateString){
+      var d= new Date(Date.parse(dateString))
+      var dd = d.getDay();
+      var mm = d.getMonth()+1;//January is 0!
+      var yyyy = d.getFullYear();
+      if(dd<10){ dd='0'+dd }
+      if(mm<10){ mm='0'+mm }
+      return mm+'/'+dd+'/'+yyyy
+    },
+
     render: function() {
       var m = this.model.toJSON();
 
       if (m._type === "article")
         $(this.el).html(this.art_tmpl(m))
       else if (m._type === "document"){
-        m.published_on = /([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})/.exec(m.published_on);
-        console.log(m.published_on)
+        m.published_on = this.formatDate(m.published_on)
         $(this.el).html(this.doc_tmpl(m))
       }
       else if (m._type === "species"){
