@@ -114,6 +114,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         this.$('.n').parent().addClass('disabled')
       else
         this.$('.n').parent().removeClass('disabled')
+
     },
 
     _getLastPage: function(){
@@ -123,25 +124,6 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       return pages;
     },
 
-    render: function() {
-      if (this.Results.total == 0){
-        this.hideContainer()
-      } else {
-        this.showContainer()
-        this._drawSearches()
-        this._drawCount()
-        this._drawFacets()
-        this._drawPagination()
-      }
-    },
-
-    hideContainer: function(){
-      this.$('.catalogue-container').hide()
-    },
-
-    showContainer: function(){
-      this.$('.catalogue-container').show()
-    },
 
     _drawSearches: function(){
       if (this.queryparams.query != ''){
@@ -161,14 +143,16 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     _drawFacets: function(){
+      // Clean facets
       this.$("#catalogue-facets").html('')
+      // Draw facets
       facet_names = Object.keys(this.Results.facets)
       for (var i=0; i<facet_names.length; i++){
+        debugger
         title = facet_names[i]
         facet = this.Results.facets[title]
         m = new Backbone.Model(facet)
         m.title = title
-
         var view = new FacetView({model: m})
         this.$("#catalogue-facets").append(view.render().el)
       }
@@ -180,6 +164,32 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       else
         this.queryparams[key] = value
       this.runQuery()
+    },
+
+    render: function() {
+      this._drawSearches()
+      this._drawCount()
+      if (this.Results.total == 0){
+        this.showNoResults()
+      } else {
+        this.showResults()
+      }
+    },
+
+    showNoResults: function(){
+      this.$('.catalogue-no-results').show()
+      if (this.queryparams.query.length > 0)
+        this.$('.catalogue-no-results h1').html('No results found.')
+      else
+        this.$('.catalogue-no-results h1').html('')
+      this.$('.catalogue-content').hide()
+    },
+
+    showResults: function(){
+      this.$('.catalogue-no-results').hide()
+      this.$('.catalogue-content').show()
+      this._drawFacets()
+      this._drawPagination()
     },
 
     addOne: function(result) {
