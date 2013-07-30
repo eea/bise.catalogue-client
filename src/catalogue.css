@@ -10,7 +10,7 @@
 #catalogue-queries ul li .close:hover{color:#fff}
 #catalogue-queries small{font-size:12px;text-align:right}
 .catalogue-facet{min-height:40px;margin-bottom:15px;font-size:14px;}
-.catalogue-facet legend{width:95%;padding-left:10px;padding-bottom:5px;margin-right:10px;border-bottom:1px dashed #c2c2c2;font-weight:bold;color:#4a4a4a}
+.catalogue-facet legend{font-size:17px;width:95%;padding-left:10px;padding-bottom:5px;margin-right:10px;border-bottom:1px dashed #c2c2c2;font-weight:bold;color:#4a4a4a}
 .catalogue-facet ul{list-style:none;-webkit-padding-start:10px;}
 .catalogue-facet ul li a{text-decoration:none;color:#168130;font-weight:bold}
 .catalogue-no-results{height:380px;}

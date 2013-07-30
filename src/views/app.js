@@ -147,10 +147,8 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       this.$("#catalogue-facets").html('')
       // Draw facets
       if (this.Results.total > 0){
-        debugger
         facet_names = Object.keys(this.Results.facets)
         for (var i=0; i<facet_names.length; i++){
-          // debugger
           title = facet_names[i]
           facet = this.Results.facets[title]
           m = new Backbone.Model(facet)

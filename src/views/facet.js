@@ -6,6 +6,14 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     tagName:  "div",
     template: _.template(facetTemplate),
 
+    titles: {
+      sites:                'Source' ,
+      authors:              'Author',
+      countries:            'Country',
+      biographical_region:  'Biogeographical Region',
+      languages:            'Language'
+    },
+
     events: {
       "click .facet-link"         : "filterByFacet",
       "click .facet-remove"       : "filterByFacet"
@@ -23,6 +31,10 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     filterByFacet: function(e) {
       el =$(e.currentTarget)
       Catalogue.mergeFacet( el.data('facet'), el.data('value'))
+    },
+
+    titleFor: function(facet){
+      return this.titles[facet]
     },
 
     remove: function() {

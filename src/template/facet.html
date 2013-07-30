@@ -1,7 +1,7 @@
 <% if (terms.length > 0){ %>
   <div class="catalogue-facet">
 
-    <legend><%= title.toUpperCase() %></legend>
+    <legend><%= this.titleFor(title) %></legend>
 
     <ul>
       <% _.each(terms, function(t) { %>
