@@ -34,7 +34,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     initialize: function(options) {
-      _.bindAll(this, 'addOne', 'addAll', 'render', 'mergeFacet')
+      _.bindAll(this, 'addOne', 'addAll', 'render', 'mergeFacet', 'isFacetSelected')
 
       // Add main template
       $(this.$el.selector).append(this.mainTemplate)
@@ -146,15 +146,18 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       // Clean facets
       this.$("#catalogue-facets").html('')
       // Draw facets
-      facet_names = Object.keys(this.Results.facets)
-      for (var i=0; i<facet_names.length; i++){
+      if (this.Results.total > 0){
         debugger
-        title = facet_names[i]
-        facet = this.Results.facets[title]
-        m = new Backbone.Model(facet)
-        m.title = title
-        var view = new FacetView({model: m})
-        this.$("#catalogue-facets").append(view.render().el)
+        facet_names = Object.keys(this.Results.facets)
+        for (var i=0; i<facet_names.length; i++){
+          // debugger
+          title = facet_names[i]
+          facet = this.Results.facets[title]
+          m = new Backbone.Model(facet)
+          m.title = title
+          var view = new FacetView({model: m})
+          this.$("#catalogue-facets").append(view.render().el)
+        }
       }
     },
 
@@ -166,9 +169,16 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       this.runQuery()
     },
 
+    isFacetSelected: function(key, value){
+      if (_.has(this.queryparams, key))
+        return true
+      return false
+    },
+
     render: function() {
       this._drawSearches()
       this._drawCount()
+      this._drawFacets()
       if (this.Results.total == 0){
         this.showNoResults()
       } else {
@@ -188,7 +198,6 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     showResults: function(){
       this.$('.catalogue-no-results').hide()
       this.$('.catalogue-content').show()
-      this._drawFacets()
       this._drawPagination()
     },
 

@@ -10,9 +10,9 @@
 #catalogue-queries ul li .close:hover{color:#fff}
 #catalogue-queries small{font-size:12px;text-align:right}
 .catalogue-facet{min-height:40px;margin-bottom:15px;font-size:14px;}
-.catalogue-facet legend{width:100%;border-bottom:1px solid #c2c2c2;font-weight:bold;color:#373737}
+.catalogue-facet legend{width:95%;padding-left:10px;padding-bottom:5px;margin-right:10px;border-bottom:1px dashed #c2c2c2;font-weight:bold;color:#4a4a4a}
 .catalogue-facet ul{list-style:none;-webkit-padding-start:10px;}
-.catalogue-facet ul li a{text-decoration:none;color:#168130}
+.catalogue-facet ul li a{text-decoration:none;color:#168130;font-weight:bold}
 .catalogue-no-results{height:380px;}
 .catalogue-no-results h1{text-align:center;font-style:italic;font-size:42px;position:relative;height:100px;width:90%;left:50%;top:50%;color:#bbb;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
 .catalogue-content .select-field{display:inline-block;overflow:hidden;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}

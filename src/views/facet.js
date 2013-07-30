@@ -7,7 +7,8 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     template: _.template(facetTemplate),
 
     events: {
-      "click .facet-link"         : "filterByFacet"
+      "click .facet-link"         : "filterByFacet",
+      "click .facet-remove"       : "filterByFacet"
     },
 
     initialize: function() {
