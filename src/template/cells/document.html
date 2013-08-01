@@ -97,11 +97,13 @@
 
 
           <ol style="list-style-type: upper-roman;margin-bottom: 15px">
-            <% for (i in highlight.attachment){ %>
-              <li style="font-size: 12px">
-                <% h = highlight.attachment[i] %>
-                <%= h.replace(/(<canvas>)/ig,"") %>
-              </li>
+            <% if (highlight != undefined && highlight.attachment.length > 0){ %>
+              <% for (i in highlight.attachment){ %>
+                <li style="font-size: 12px">
+                  <% h = highlight.attachment[i] %>
+                  ... <%= h.replace(/(<canvas>)/ig,"") %> ...
+                </li>
+              <% } %>
             <% } %>
           </ol>
 

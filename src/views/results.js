@@ -38,13 +38,15 @@ define([
     },
 
     formatDate: function(dateString){
-      var d= new Date(Date.parse(dateString))
-      var dd = d.getDay();
-      var mm = d.getMonth()+1;//January is 0!
-      var yyyy = d.getFullYear();
-      if(dd<10){ dd='0'+dd }
-      if(mm<10){ mm='0'+mm }
-      return mm+'/'+dd+'/'+yyyy
+      if (dateString.length == 10){
+        var d = dateString.split('-')
+        var dd = d[2]
+        var mm = d[1]
+        var yyyy = d[0]
+        return dd+'/'+mm+'/'+yyyy
+      } else {
+        return '-'
+      }
     },
 
     render: function() {
