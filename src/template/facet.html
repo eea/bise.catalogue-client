@@ -5,19 +5,19 @@
 
     <ul>
       <% _.each(terms, function(t) { %>
-
-        <li>
-          <a href="#" class="facet-link" data-facet="<%= title %>" data-value="<%= t.term %>"><%= t.term %></a>
-          <span style="margin-left: 5px; color: #666666">
-            (<%= t.count %>)
-          </span>
-          <% if (Catalogue.isFacetSelected(title, t.term )){ %>
-            <a href="#" class="facet-remove" data-facet="<%= title %>" data-value="<%= t.term %>" style="float:right; color: #bf0000;">
-              Remove
-            </a>
-          <% } %>
-        </li>
-
+        <% if (t.term != ''){ %>
+          <li>
+            <a href="#" class="facet-link" data-facet="<%= title %>" data-value="<%= t.term %>"><%= t.term %></a>
+            <span style="margin-left: 5px; color: #666666">
+              (<%= t.count %>)
+            </span>
+            <% if (Catalogue.isFacetSelected(title, t.term )){ %>
+              <a href="#" class="facet-remove" data-facet="<%= title %>" data-value="<%= t.term %>" style="float:right; color: #bf0000;">
+                Remove
+              </a>
+            <% } %>
+          </li>
+        <% } %>
       <% }) %>
     </ul>
   </div>
