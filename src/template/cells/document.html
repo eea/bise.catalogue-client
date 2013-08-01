@@ -12,7 +12,11 @@
 
       <div class="row-fluid">
 
-        <div class="span10 cell-title">
+        <div class="span12 cell-title">
+
+          <small style="float: right">
+            <span class="label label-success"><%= site.name %></strong>
+          </small>
 
           <div style="float:left; width: 45px">
             <% if (content_type == 'application/pdf') {%>
@@ -46,9 +50,10 @@
               <div class="pull-left mini-icon plaintext"></div>
             <% } %>
           </div>
+
           <div style="margin-left: 45px">
 
-            <a><%= title %></a>
+            <a class="title"><%= title %></a>
 
             <% if (title != english_title){ %>
               <div class="row-fluid">
@@ -69,21 +74,69 @@
               </div>
             </div>
 
+            <!--
             <div class="row-fluid">
               <div class="span12">
+                <label>Languages</label>
                 <% _.each(languages, function(l){ %>
                   <label class="label"><%= l.name %></label>
                 <% }) %>
               </div>
             </div>
+            -->
+
+
 
           </div>
         </div>
-        <div class="span2" style="text-align: right">
-          <small>
-            <!-- <strong>Source: </strong> -->
-            <span class="label label-success"><%= site.name %></strong>
-          </small>
+      </div>
+
+      <div class="row-fluid preview" style="">
+        <!-- display:none -->
+        <div class="span12">
+
+
+          <ol style="list-style-type: upper-roman;margin-bottom: 15px">
+            <% for (i in highlight.attachment){ %>
+              <li style="font-size: 12px">
+                <% h = highlight.attachment[i] %>
+                <%= h.replace(/(<canvas>)/ig,"") %>
+              </li>
+            <% } %>
+          </ol>
+
+
+          <!--
+          <div class="row-fluid">
+            <div class="span3">
+              <strong>Document content:</strong>
+            </div>
+            <div class="span9">
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span3">
+              <strong>Languages:</strong>
+            </div>
+            <div class="span9">
+              <% _.each(languages, function(l){ %>
+                <label class="label"><%= l.name %></label>
+              <% }) %>
+            </div>
+          </div>
+          -->
+          <div class="row-fluid">
+            <div class="span3" style="text-align:right">
+              <strong>Download:</strong>
+            </div>
+            <div class="span9">
+              <a href="http://<%= window.Catalogue.host %><%= file_name %>" class="btn btn-mini">
+                <%= file_name.substring(file_name.lastIndexOf('/')+1, file_name.length) %>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
 

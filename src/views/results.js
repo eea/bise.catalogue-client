@@ -27,7 +27,7 @@ define([
     template: _.template(resultTemplate),
 
     events: {
-      "click .cell-title a"     : "showResult",
+      "click a.title"     : "showResult",
     },
 
     initialize: function() {
@@ -71,13 +71,20 @@ define([
 
     showResult: function(e){
       e.preventDefault()
-      if ($(this.el).find('.preview').length > 0){
-        $(this.el).find('.preview').remove()
-      } else {
-        this.$el.parent().find('.preview').remove()
-        var d = $('<div class="preview">');
-        $(this.el).find('.catalogue-cell').append(d)
+      if (this.model.attributes._type === "document"){
+        console.log('document previewing...')
       }
+      if (this.$el.find('.preview').length > 0){
+        if (this.$el.find('.preview').css('display') == 'none')
+          $(this.el).find('.preview').show()
+        else
+          $(this.el).find('.preview').hide()
+      }
+      // else {
+      //   this.$el.parent().find('.preview').remove()
+      //   var d = $('<div class="preview">');
+      //   $(this.el).find('.catalogue-cell').append(d)
+      // }
     },
 
     remove: function() {

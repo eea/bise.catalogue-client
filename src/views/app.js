@@ -3,6 +3,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
   var AppView = Backbone.View.extend({
 
+    host: null,
     el: $("#catalogue-app"),
     mainTemplate: _.template(mainTemplate),
 
@@ -46,7 +47,8 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         areas.append(opt)
       }
 
-      this.Results = new ResultsCollection(options['host'])
+      this.host = options['host']
+      this.Results = new ResultsCollection(this.host)
       this.Results.bind('add', this.addOne)
       this.Results.bind('reset', this.addAll)
       this.Results.bind('all', this.render)
