@@ -82,11 +82,6 @@ define([
         else
           $(this.el).find('.preview').hide()
       }
-      // else {
-      //   this.$el.parent().find('.preview').remove()
-      //   var d = $('<div class="preview">');
-      //   $(this.el).find('.catalogue-cell').append(d)
-      // }
     },
 
     remove: function() {
