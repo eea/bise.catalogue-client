@@ -12,7 +12,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       articles: 'Articles',
       documents: 'Documents',
       // news: 'News',
-      // links: 'Links',
+      links: 'Links',
       species: 'Species',
       habitats: 'Habitat',
       protected_areas: 'Sites'
@@ -129,8 +129,8 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     _drawSearches: function(){
       if (this.queryparams.query != ''){
-        close = $('<span>').addClass('close').html('✖')
-        li = $('<li>').append(close).append(this.queryparams.query)
+        // close = $('<span>').addClass('close').html('✖')
+        li = $('<li>').append(this.queryparams.query)
         this.$('#catalogue-queries ul').html(li)
       } else {
         this.$('#catalogue-queries ul').html('')

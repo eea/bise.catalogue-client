@@ -1,0 +1,64 @@
+<div class="catalogue-cell">
+
+  <div class="row-fluid">
+
+    <div class="span2">
+      <span style="padding: 7px; color: #5d5d5d">
+        Link
+      </span>
+    </div>
+
+    <div class="span10">
+
+      <div class="row-fluid">
+        <div class="span10 cell-title">
+
+          <!--
+          <span style="float:right; padding: 2px 7px; background: #177926; color: white">
+            <%= site.name %>
+          </span>
+          -->
+
+          <a><%= title %></a>
+          </br>
+
+          <!--
+          <% if (title != english_title){ %>
+            <small>
+              <strong><%= english_title %></strong>
+            </small><br/>
+          <% } %>
+          -->
+
+          <small>
+            by <strong><%= author %></strong>
+            on <strong><%= published_on %></strong>
+          </small>
+
+        </div>
+
+        <div class="span2" style="text-align: right">
+          <small>
+            <span class="label label-success"><%= site.name %></strong>
+          </small>
+        </div>
+
+
+    </div>
+
+
+
+
+<!--
+  <div class="cell-type" style="float:left; width: 90px;">
+    <span style="padding: 7px; font-style: italic; color: #5d5d5d">
+        Article
+    </span>
+  </div>
+
+  <div style="margin-left: 90px">
+
+
+  </div> -->
+
+</div>

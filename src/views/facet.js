@@ -7,11 +7,18 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     template: _.template(facetTemplate),
 
     titles: {
-      sites:                'Source' ,
-      authors:              'Author',
+      site:                 'Source' ,
+      author:               'Author',
       countries:            'Country',
       biographical_region:  'Biogeographical Region',
-      languages:            'Language'
+      languages:            'Language',
+      source_db:            'Source Dataset',
+      kingdom:              'Kingdom',
+      phylum:               'Phylum',
+      classis:              'Classis',
+      species_group:        'Species Group',
+      taxonomic_rank:       'Taxonomic Rank',
+      genus:                'Genus'
     },
 
     events: {

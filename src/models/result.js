@@ -8,7 +8,6 @@ define(['underscore', 'backbone'], function(_, Backbone) {
       _version             : null,
       author               : "",
       biographical_region  : null,
-      concepts_id          : null,
       content              : "",
       content_without_tags : "",
       created_at           : null,

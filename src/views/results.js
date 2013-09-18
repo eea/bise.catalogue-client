@@ -6,10 +6,11 @@ define([
     'text!template/result.html',
     'text!template/cells/article.html',
     'text!template/cells/document.html',
+    'text!template/cells/link.html',
     'text!template/cells/species.html',
     'text!template/cells/habitat.html',
     'text!template/cells/site.html'
-  ], function($, _, Backbone, Result, resultTemplate, art, doc, spc, hab, sit){
+  ], function($, _, Backbone, Result, resultTemplate, art, doc, lnk, spc, hab, sit){
 
   var ResultView = Backbone.View.extend({
 
@@ -19,7 +20,7 @@ define([
     art_tmpl: _.template(art),
     doc_tmpl: _.template(doc),
     new_tmpl: '',
-    lnk_tmpl: '',
+    lnk_tmpl: _.template(lnk),
     spc_tmpl: _.template(spc),
     hab_tmpl: _.template(hab),
     sit_tmpl: _.template(sit),
@@ -57,6 +58,8 @@ define([
       else if (m._type === "document"){
         m.published_on = this.formatDate(m.published_on)
         $(this.el).html(this.doc_tmpl(m))
+      } else if (m._type === "link"){
+        $(this.el).html(this.lnk_tmpl(m))
       }
       else if (m._type === "species"){
         $(this.el).html(this.spc_tmpl(m))
@@ -76,9 +79,16 @@ define([
       if (this.model.attributes._type === "document"){
         console.log('document previewing...')
       }
+      if (this.model.attributes._type === "protected_area"){
+        ifr = this.$el.find('iframe')
+        if (ifr.attr('src')==="")
+          ifr.attr('src', "http://discomap.eea.europa.eu/map/Filtermap/?webmap=0b2680c2bc544431a9a97119aa63d707&SiteCode="+ifr.data('code')+"&autoquery=false&zoomto=true")
+      }
       if (this.$el.find('.preview').length > 0){
-        if (this.$el.find('.preview').css('display') == 'none')
+        if (this.$el.find('.preview').css('display') == 'none'){
+          $(this.el).parent().find('.preview').hide()
           $(this.el).find('.preview').show()
+        }
         else
           $(this.el).find('.preview').hide()
       }
