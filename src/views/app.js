@@ -63,9 +63,13 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     setQuery: function(e){
       e.preventDefault()
       // Reset query
-      this.queryparams.page = 1
       var q = $('#catalogue-search-form input').val()
-      this.queryparams.query = q.replace(/(<([^>]+)>)/ig,"");
+      this.queryparams = {
+        indexes: 'all',
+        query: q.replace(/(<([^>]+)>)/ig,""),
+        page: 1,
+        per_page: 10
+      }
       $('#catalogue-search-form input').val('')
       this.runQuery()
     },
