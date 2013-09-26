@@ -9,15 +9,11 @@
     </div>
 
     <div class="span10">
-
       <div class="row-fluid">
-
         <div class="span12 cell-title">
-
           <small style="float: right">
             <span class="label label-success"><%= site.name %></strong>
           </small>
-
           <div style="float:left; width: 45px">
             <% if (content_type == 'application/pdf') {%>
               <div class="pull-left mini-icon pdf"></div>
@@ -54,7 +50,6 @@
           <div style="margin-left: 45px">
 
             <a class="title"><%= title %></a>
-
             <% if (title != english_title){ %>
               <div class="row-fluid">
                 <div class="span12">
@@ -74,27 +69,12 @@
               </div>
             </div>
 
-            <!--
-            <div class="row-fluid">
-              <div class="span12">
-                <label>Languages</label>
-                <% _.each(languages, function(l){ %>
-                  <label class="label"><%= l.name %></label>
-                <% }) %>
-              </div>
-            </div>
-            -->
-
-
-
           </div>
         </div>
       </div>
 
       <div class="row-fluid preview" style="">
-        <!-- display:none -->
         <div class="span12">
-
 
           <ol style="list-style-type: upper-roman;margin-bottom: 15px">
             <% if (highlight != undefined && highlight.attachment.length > 0){ %>
@@ -107,36 +87,11 @@
             <% } %>
           </ol>
 
+          <div style="margin-top: 10px; text-align: right">
+            <a target="_blank" href="http://<%= window.Catalogue.host %><%= file_name %>" class="btn btn-mini">
+              Download <%= file_name.substring(file_name.lastIndexOf('/')+1, file_name.length) %>
 
-          <!--
-          <div class="row-fluid">
-            <div class="span3">
-              <strong>Document content:</strong>
-            </div>
-            <div class="span9">
-            </div>
-          </div>
-
-          <div class="row-fluid">
-            <div class="span3">
-              <strong>Languages:</strong>
-            </div>
-            <div class="span9">
-              <% _.each(languages, function(l){ %>
-                <label class="label"><%= l.name %></label>
-              <% }) %>
-            </div>
-          </div>
-          -->
-          <div class="row-fluid">
-            <div class="span3" style="text-align:right">
-              <strong>Download:</strong>
-            </div>
-            <div class="span9">
-              <a target="_blank" href="http://<%= window.Catalogue.host %><%= file_name %>" class="btn btn-mini">
-                <%= file_name.substring(file_name.lastIndexOf('/')+1, file_name.length) %>
-              </a>
-            </div>
+            </a>
           </div>
 
         </div>
@@ -145,38 +100,3 @@
     </div>
   </div>
 </div>
-
-
-<!--
-<div class="catalogue-cell">
-
-  <div class="cell-type" style="float:left; width: 90px;">
-    <span style="padding: 7px; font-style: italic; color: #5d5d5d">
-        Document
-    </span>
-  </div>
-
-  <div style="margin-left: 90px">
-
-    <span style="float:right; padding: 2px 7px; background: #177926; color: white">
-      BISE
-    </span>
-
-    <div class="cell-title">
-      <a href="#"><%= title %></a>
-    </div>
-
-    <% if (title.length > 0 && title != english_title){ %>
-      <small>
-        <strong><%= english_title %></strong>
-      </small><br/>
-    <% } %>
-
-    <small>
-      <strong>By:</strong><%= author %>
-    </small>
-  </div>
-
-</div>
-
--->
