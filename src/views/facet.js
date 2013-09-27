@@ -18,7 +18,8 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
       classis:              'Classis',
       species_group:        'Species Group',
       taxonomic_rank:       'Taxonomic Rank',
-      genus:                'Genus'
+      genus:                'Genus',
+      published_on:         'Timeline'
     },
 
     events: {
