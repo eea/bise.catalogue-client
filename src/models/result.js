@@ -2,6 +2,8 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 
   var ResultModel = Backbone.Model.extend({
 
+    idAttribute: "uri",
+
     // Default attributes for a result
     defaults: {
       _type                : "",
