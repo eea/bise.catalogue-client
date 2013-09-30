@@ -81,8 +81,40 @@ define([
       }
       if (this.model.attributes._type === "protected_area"){
         ifr = this.$el.find('iframe')
-        if (ifr.attr('src')==="")
-          ifr.attr('src', "http://discomap.eea.europa.eu/map/Filtermap/?webmap=0b2680c2bc544431a9a97119aa63d707&SiteCode="+ifr.data('code')+"&autoquery=false&zoomto=true")
+        data = {
+          where: "N2K_WM_1M_Public.SITECODE='" + ifr.data('code') + "'",
+          geometryType: 'esriGeometryEnvelope',
+          spatialRel: 'esriSpatialRelIntersects',
+          returnGeometry: true,
+          returnIdsOnly: false,
+          returnCountOnly: false,
+          returnZ: false,
+          returnM: false,
+          returnDistinctValues: false,
+          f: 'pjson'
+        }
+        $.ajax({
+          url: "http://test.discomap.eea.europa.eu/arcgis/rest/services/N2K/Natura2000Query_WM/MapServer/3/query",
+          data: data,
+          dataType: 'json'
+        }).done(function (data){
+          hasGeometry = false
+          if (data.features.length > 0){
+            _.each( data.features, function (f){
+              if (f.geometry.rings.length > 0){
+                hasGeometry = true
+              }
+            })
+          }
+          console.log('hasGeometry')
+          console.log(hasGeometry)
+          if (hasGeometry)
+            ifr.attr('src', "http://discomap.eea.europa.eu/map/Filtermap/?webmap=0b2680c2bc544431a9a97119aa63d707&SiteCode="+ifr.data('code')+"&autoquery=false&zoomto=true")
+          else
+            ifr.hide()
+        }).fail(function (){
+          ifr.hide()
+        })
       }
       if (this.$el.find('.preview').length > 0){
         if (this.$el.find('.preview').css('display') == 'none'){
