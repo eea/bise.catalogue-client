@@ -75,8 +75,13 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     setArea: function(e){
-      this.queryparams.page = 1
-      this.queryparams.indexes = $('#catalogue-area').val()
+      q = this.queryparams.query
+      this.queryparams = {
+        indexes: $('#catalogue-area').val(),
+        query: q,
+        page: 1,
+        per_page: 10
+      }
       this.runQuery()
     },
 
@@ -157,10 +162,15 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         for (var i=0; i<facet_names.length; i++){
           title = facet_names[i]
           facet = this.Results.facets[title]
-          m = new Backbone.Model(facet)
-          m.title = title
-          var view = new FacetView({model: m})
-          this.$("#catalogue-facets").append(view.render().el)
+          if ((typeof(facet.terms) != 'undefined' &&
+              facet.terms.length > 0) ||
+              (typeof(facet.entries) != 'undefined' &&
+              facet.entries.length > 0)){
+            m = new Backbone.Model(facet)
+            m.title = title
+            var view = new FacetView({model: m})
+            this.$("#catalogue-facets").append(view.render().el)
+          }
         }
       }
     },
