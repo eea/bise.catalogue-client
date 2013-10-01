@@ -53,12 +53,14 @@ define([
     render: function() {
       var m = this.model.toJSON();
 
-      if (m._type === "article")
+      if (m._type === "article"){
+        m.published_on = this.formatDate(m.published_on)
         $(this.el).html(this.art_tmpl(m))
-      else if (m._type === "document"){
+      } else if (m._type === "document"){
         m.published_on = this.formatDate(m.published_on)
         $(this.el).html(this.doc_tmpl(m))
       } else if (m._type === "link"){
+        m.published_on = this.formatDate(m.published_on)
         $(this.el).html(this.lnk_tmpl(m))
       }
       else if (m._type === "species"){
