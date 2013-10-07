@@ -20,12 +20,16 @@
       <div class="row-fluid">
         <div class="span4">
           <small>
-            <strong>Country: </strong><%= countries[0].name %>
+            <strong>Country: </strong>
+            <% if (countries[0]){ %>
+            <%= countries[0].name %>
+            <% } %>
           </small>
         </div>
         <div class="span8">
           <small>
-            <strong>Source: </strong><%= source_db %>
+            <strong>Source: </strong>
+            <%= source_db %>
           </small>
         </div>
       </div>
