@@ -54,7 +54,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       this.Results.bind('all', this.render)
 
       q = this.$el.data('query')
-      if (q != 'undefined') this.queryparams.query = q
+      if (q != 'undefined' && q && '') this.queryparams.query = q
 
       this.runQuery()
     },
