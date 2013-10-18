@@ -205,7 +205,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     showNoResults: function(){
       this.$('.catalogue-no-results').show()
-      if (this.queryparams.query.length > 0)
+      if (this.queryparams.query && this.queryparams.query.length > 0)
         this.$('.catalogue-no-results h1').html('No results found.')
       else
         this.$('.catalogue-no-results h1').html('')

@@ -12,7 +12,7 @@
 
       <div class="row-fluid">
         <div class="span10 cell-title">
-          <a><%= title %></a>
+          <a target="_blank" href="<%= source_url %>"><%= title %></a>
           <% if (title != english_title){ %>
             <small>
               <strong><%= english_title %></strong>
@@ -27,16 +27,6 @@
           <small>
             <span class="label label-success"><%= site.name %></strong>
           </small>
-        </div>
-      </div>
-
-      <div class="row-fluid preview" style="">
-        <div class="span12">
-          <div style="margin-top: 10px; text-align: right">
-            <a target="_blank" href="http://<%= window.Catalogue.host %>/<%= source_url %>" class="btn btn-mini">
-              Read article
-            </a>
-          </div>
         </div>
       </div>
 

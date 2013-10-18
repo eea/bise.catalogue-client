@@ -306,7 +306,7 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{color:#fff;text-decorati
 .catalogue-cell .hits{border-left:3px solid #8ea04c;border-top:1px solid #8ea04c;font-size:10px;line-height:10px;-webkit-box-shadow:1px 2px 2px 2px rgba(0,0,0,0.3);box-shadow:1px 2px 2px 2px rgba(0,0,0,0.3)}
 .catalogue-cell p.hit{background:#fff;color:#6b6b6b;margin-bottom:0}
 .catalogue-cell em{font-weight:bold;font-style:normal}
-.catalogue-cell .preview{background:#f2f2f2;min-height:50px;padding:10px 4px}
+.catalogue-cell .preview{background:#f2f2f2;min-height:35px;padding:10px 4px}
 .filetype,.pdf,.rtf,.word,.word2010,.csv,.excel,.excel2010,.powerpoint,.powerpoint2010,.plaintext{width:150px;height:150px;background-size:150px 150px;background-repeat:none;background-image:url("./assets/filetypes/default.png")}
 .pdf{background-image:url("./assets/filetypes/pdf.png")}
 .rtf{background-image:url("./assets/filetypes/rtf.png")}
