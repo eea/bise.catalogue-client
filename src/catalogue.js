@@ -39,6 +39,6 @@ require.config({
 
 require(['views/app'], function(AppView){
     window.Catalogue = new AppView({
-        host: 'localhost:3000'
+        host: 'termite.eea.europa.eu'
     })
 });
