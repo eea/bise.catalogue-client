@@ -14,7 +14,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       // news: 'News',
       links: 'Links',
       species: 'Species',
-      habitats: 'Habitat',
+      habitats: 'Habitats',
       protected_areas: 'Sites'
     },
 
@@ -183,6 +183,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
         delete this.queryparams[key]
       else
         this.queryparams[key] = value
+      this.queryparams['page'] = 1
       this.runQuery()
     },
 
