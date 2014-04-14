@@ -9,7 +9,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     indexes: {
       all: 'All the Catalogue',
-      articles: 'Articles',
+      articles: 'Webpages',
       documents: 'Documents',
       // news: 'News',
       links: 'Links',

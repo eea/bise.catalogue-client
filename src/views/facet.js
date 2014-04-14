@@ -24,7 +24,8 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
 
     events: {
       "click .facet-link": "applyFilter",
-      "click .facet-remove": "unapplyFilter"
+      "click .facet-remove": "unapplyFilter",
+      "click legend": "toggleCollapse"
     },
 
     initialize: function() {
@@ -69,6 +70,10 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
       this.model.unbind('destroy', this.remove, this);
       this.model.destroy();
       this.remove();
+    },
+
+    toggleCollapse: function(e) {
+      el = $(e.currentTarget).next().toggle()
     }
 
   })

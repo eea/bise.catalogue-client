@@ -13,6 +13,13 @@
 #catalogue-app
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
+    .catalogue-sidebar
+        width: 25.914893617021278%;
+        min-height: 20px;
+        float: left;
+    .catalogue-content
+        width: 70.95744680851064%;
+
 .catalogue-toolbar
     border-radius(5px)
     padding: 12px
@@ -20,9 +27,8 @@
     background: BASE_GREEN
 
     .select-field
-
         float: left
-        width: 31% !important
+        width: 25% !important
         overflow:hidden
 
         background: #1eaa46
@@ -35,6 +41,7 @@
 
         border-radius(5px)
         border: 1px solid BORDER_GREEN
+        // padding 6px 10px
 
         select
             color: white
@@ -54,7 +61,8 @@
         margin: 0
 
     input
-        padding: 4px 6px
+        padding 10px 15px
+        // padding: 4px 6px
         margin: 0
         margin-left: 1.404255319148934%
         width: 270px
@@ -69,9 +77,8 @@
 
 
 #catalogue-queries
-    font-size: 16px
+    font-size: 1.5em
     color: white
-    display: none
     background: BASE_GREEN
     border-radius(5px)
     margin-bottom: 15px
@@ -80,41 +87,44 @@
     ul
         list-style: none !important
         padding: 0
-        margin: 0px
+        margin: 5px 0
         li
             display: block
-            height: 20px
             line-height: 20px
-            .close
-                color: #107327
-                float: right
-                font-size: 20px
-                cursor:pointer
-                &:hover
-                    color: white
-    small
-        font-size: 12px
-        text-align:right
+            font-size: 1.5em
+
+    #results-count
+        margin-top: 1em
+        font-size: 0.8em
+        text-align: right
+
+
 
 
 .catalogue-facet
-    min-height: 40px
-    margin-bottom: 15px
+    border-radius(3px)
+    border 2px solid BASE_GREEN
+    // min-height: 40px
+    margin-bottom: 5px
     font-size: 14px
 
     legend
+        padding: 10px 5px
+        background: #b3e690
+        color: BASE_GREEN
         font-size: 17px
-        width: 95%
-        padding-left: 10px
-        padding-bottom: 5px
-        margin-right: 10px
-        border-bottom: 1px dashed #c2c2c2
+        width: 96%
+        // padding-left: 10px
+        // padding-bottom: 5px
+        // margin-right: 10px
+        // border-bottom: 1px solid #168130
         font-weight: bold
-        color: #4a4a4a
+        // color: #4a4a4a
 
     ul
         list-style: none
         -webkit-padding-start: 10px
+        margin-bottom: 10px
         li a
             cursor: pointer
             text-decoration: none
@@ -163,7 +173,6 @@
 
         select
             color: #484848
-            // font-weight: bold
             padding: 2px
             // float:left
             width: 100%

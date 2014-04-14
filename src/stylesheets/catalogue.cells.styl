@@ -20,25 +20,40 @@ CELL_SMALL_COLOR = #999999
 
 .catalogue-cell
 
-    border-bottom: 1px dashed #cbcbcb
+    // border-bottom: 1px solid #cbcbcb
+    // border-bottom: 1px solid #d3d3d3
+    margin: 1em 0
     padding-top: 5px
     padding-bottom: 5px
     width: 100%
+
+    .category
+        font-size: 0.9em
+        color: CELL_SMALL_COLOR
 
     .cell-title
         font-size: 14px
         font-family: Verdana
         color: #86a000
-
         a
             cursor: pointer
-            font-weight: bold
-            text-decoration: none
-            color: BASE_GREEN
+            display: block
+            font-size: 1.3em
+            // font-weight: normal
+            color: #168130
 
-    small
-        color: CELL_SMALL_COLOR
-        font-size: 12px
+    .cell-subtitle
+        font-size: 0.9em
+        color: #494949
+
+    // Site badge
+    .label.label-success
+        font-size: 0.9em
+        float: right
+
+    // small
+    //     color: CELL_SMALL_COLOR
+    //     font-size: 12px
 
     .hits
         border-left: 3px solid #8ea04c
