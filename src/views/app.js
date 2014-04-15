@@ -9,10 +9,10 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
 
     indexes: {
       all: 'All the Catalogue',
-      articles: 'Webpages',
       documents: 'Documents',
       // news: 'News',
       links: 'Links',
+      articles: 'Webpages',
       species: 'Species',
       habitats: 'Habitats',
       protected_areas: 'Sites'

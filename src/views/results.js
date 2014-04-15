@@ -119,12 +119,13 @@ define([
         })
       }
       if (this.$el.find('.preview').length > 0){
-        if (this.$el.find('.preview').css('display') == 'none'){
-          $(this.el).parent().find('.preview').hide()
-          $(this.el).find('.preview').show()
-        }
-        else
-          $(this.el).find('.preview').hide()
+        $(this.el).find('.preview').slideToggle()
+        // if (this.$el.find('.preview').css('display') == 'none'){
+        //   $(this.el).parent().find('.preview').hide()
+        //   $(this.el).find('.preview').show()
+        // }
+        // else
+        //   $(this.el).find('.preview').hide()
       }
     },
 

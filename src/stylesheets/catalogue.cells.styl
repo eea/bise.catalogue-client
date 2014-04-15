@@ -22,9 +22,10 @@ CELL_SMALL_COLOR = #999999
 
     // border-bottom: 1px solid #cbcbcb
     // border-bottom: 1px solid #d3d3d3
+    border-bottom 1px dotted LIGHT_GRAY
     margin: 1em 0
     padding-top: 5px
-    padding-bottom: 5px
+    padding-bottom: 10px
     width: 100%
 
     .category
@@ -33,27 +34,30 @@ CELL_SMALL_COLOR = #999999
 
     .cell-title
         font-size: 14px
-        font-family: Verdana
         color: #86a000
         a
             cursor: pointer
             display: block
             font-size: 1.3em
-            // font-weight: normal
+            font-weight: bold
             color: #168130
+            text-overflow: ellipsis
+            overflow: hidden;
+            width: 90%
+            white-space: nowrap
+            word-wrap: normal
 
     .cell-subtitle
         font-size: 0.9em
         color: #494949
 
+        strong
+            color: DARK_GRAY
+
     // Site badge
     .label.label-success
         font-size: 0.9em
         float: right
-
-    // small
-    //     color: CELL_SMALL_COLOR
-    //     font-size: 12px
 
     .hits
         border-left: 3px solid #8ea04c
@@ -76,12 +80,22 @@ CELL_SMALL_COLOR = #999999
 
 
     .preview
-        // border: 1px solid #868686
-        background: #f2f2f2
+        margin-top 15px
+        border: 2px dashed LIGHT_GRAY
+        // background: #f2f2f2
+        // background: lighten(LIGHT_GRAY, 5%)
         min-height: 35px
         // -webkit-border-radius: 5px
         // border-radius: 5px
-        padding: 10px 4px
+        padding: 10px
+
+        ol
+            margin-top: 10px
+            li
+                color: DARK_GRAY
+                em
+                    color: BASE_GREEN
+
 
 
 
@@ -173,7 +187,6 @@ CELL_SMALL_COLOR = #999999
 
     .cell-title
         font-size: 12px
-        font-family: Verdana
         color: #86a000
 
         a
@@ -213,7 +226,6 @@ CELL_SMALL_COLOR = #999999
 
     .cell-title
         font-size: 12px
-        font-family: Verdana
         color: #86a000
 
         a
@@ -251,7 +263,6 @@ CELL_SMALL_COLOR = #999999
 
     .cell-title
         font-size: 12px
-        font-family: Verdana
         color: #86a000
 
         a

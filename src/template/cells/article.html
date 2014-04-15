@@ -1,32 +1,22 @@
 <div class="catalogue-cell">
+  <span class="label label-success">
+    <%= site.name %>
+  </span>
 
-  <div class="row-fluid">
+  <div class="cell-title">
+    <a target="_blank" href="<%= source_url %>">
+      <%= title %>
+    </a>
+    <% if (title != english_title){ %>
+      <small>
+        <strong><%= english_title %></strong>
+      </small><br/>
+    <% } %>
+  </div>
 
-    <div class="span2">
-      <span class="category">Webpage</span>
-    </div>
-
-    <div class="span10">
-
-      <span class="label label-success"><%= site.name %></span>
-
-      <div class="cell-title">
-        <a target="_blank" href="<%= source_url %>">
-          <%= title %>
-        </a>
-        <% if (title != english_title){ %>
-          <small>
-            <strong><%= english_title %></strong>
-          </small><br/>
-        <% } %>
-      </div>
-
-      <div class="cell-subtitle">
-        Published on
-        <%= published_on %>
-      </div>
-
-    </div>
-
+  <div class="cell-subtitle">
+    <strong>Article</strong>
+    published on
+    <%= published_on %>
   </div>
 </div>
