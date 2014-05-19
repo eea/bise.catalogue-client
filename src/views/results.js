@@ -108,8 +108,6 @@ define([
               }
             })
           }
-          console.log('hasGeometry')
-          console.log(hasGeometry)
           if (hasGeometry)
             ifr.attr('src', "http://discomap.eea.europa.eu/map/Filtermap/?webmap=0b2680c2bc544431a9a97119aa63d707&SiteCode="+ifr.data('code')+"&autoquery=false&zoomto=true")
           else

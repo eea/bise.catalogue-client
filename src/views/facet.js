@@ -1,4 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet.html'], function($, _, Backbone, Facet, facetTemplate) {
+define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet.html'],
+  function($, _, Backbone, Facet, facetTemplate) {
 
   var FacetView = Backbone.View.extend({
 
@@ -40,14 +41,11 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     },
 
     render: function() {
-      console.log($(this.el));
       $(this.el).html(this.template(this.model.toJSON()));
-      // this.delegateEvents()
       return this;
     },
 
     applyFilter: function(e) {
-      console.log('apply filter...')
       el = $(e.currentTarget)
       Catalogue.mergeFacet(el.data('facet'), el.data('value'))
     },
