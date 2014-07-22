@@ -73,6 +73,7 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
 
     toggleCollapse: function(e) {
       el = $(e.currentTarget).next().slideToggle()
+      $(e.currentTarget).find('.triangle').toggleClass('up')
     }
 
   })
