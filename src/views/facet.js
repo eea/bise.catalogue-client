@@ -6,6 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     model: Facet,
     //tagName: "div",
     template: _.template(facetTemplate),
+    isOpen: false,
 
     titles: {
       site: 'Source',
@@ -72,10 +73,11 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     },
 
     toggleCollapse: function(e) {
-      el = $(e.currentTarget).next().slideToggle()
-      $(e.currentTarget).find('.triangle').toggleClass('up')
+      el = $(e.currentTarget).next().slideToggle($.proxy(this.rotateTriangle, this));
+    },
+    rotateTriangle: function(e){
+      this.$el.find('.triangle').toggleClass('up');
     }
-
   })
   return FacetView;
 });
