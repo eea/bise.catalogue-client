@@ -7,6 +7,7 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     //tagName: "div",
     template: _.template(facetTemplate),
     isOpen: false,
+    isShowingFirstTen: true,
 
     titles: {
       site: 'Source',
@@ -28,7 +29,8 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     events: {
       "click .facet-link": "applyFilter",
       "click .facet-remove": "unapplyFilter",
-      "click .facet-header": "toggleCollapse"
+      "click .facet-header": "toggleCollapse",
+      "click .show-more": "toggleShowFirsts"
     },
 
     initialize: function() {
@@ -39,6 +41,7 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       if (!this.isOpen) this.$el.find('ul').hide()
+      if (this.isShowingFirstTen) this.$el.find('ul').addClass('first-five')
       return this;
     },
 
@@ -72,6 +75,10 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     },
     rotateTriangle: function(e){
       this.$el.find('.triangle').toggleClass('up');
+    },
+
+    toggleShowFirsts: function(e) {
+      this.$el.find('ul').toggleClass('first-five')
     }
   })
   return FacetView;
