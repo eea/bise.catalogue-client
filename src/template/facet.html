@@ -4,7 +4,7 @@
 </div>
 
 <% if (typeof(terms) != 'undefined' ){ %>
-  <ul style="display:none">
+  <ul>
       <% _.each(terms, function(t) { %>
         <% if (t.term != ''){ %>
           <li>
@@ -25,7 +25,7 @@
       <% }) %>
   </ul>
 <% } else { %>
-  <ul style="display:none">
+  <ul>
     <% _.each(entries, function(e) { %>
       <li>
         <% d = new Date(e.time) %>
