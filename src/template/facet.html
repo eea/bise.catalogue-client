@@ -48,5 +48,12 @@
         <a class="facet-link" data-facet="<%= title %>" data-value="<%= d.getFullYear() %>"><%= d.getFullYear() %></a>
       </li>
     <% }) %>
+    <% if (entries.length > 5){ %>
+      <li class="show-more">
+        <a>
+          -- Show/Hide more... --
+        </a>
+      </li>
+    <% } %>
   </ul>
 <% } %>
