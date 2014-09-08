@@ -46,6 +46,8 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
                 'mergeFacet', 'removeFacet', 'isFacetSelected',
                 'enableAdvancedSearch', 'enableBiseSearch')
 
+      this._checkIE();
+
       // Add main template
       $(this.$el.selector).append(this.mainTemplate)
 
@@ -59,6 +61,19 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       // Run QUERY by default
       this.queryparams.indexes = Object.keys(this.bise_indexes);
       this.runQuery()
+    },
+
+    // Minor fix to allow Object.keys in IE8
+    _checkIE: function(){
+      if (!Object.keys) {
+        Object.keys = function(obj) {
+          var keys = [];
+          for (var i in obj) {
+            if (obj.hasOwnProperty(i)) keys.push(i);
+          }
+          return keys;
+        };
+      }
     },
 
     getEndpoint: function(){
