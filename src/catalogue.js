@@ -17,9 +17,9 @@ require.config({
     paths: {
         text       : 'lib/require/text',
         jquery     : 'lib/jquery/jquery-min',
-        jqcloud    : 'lib/jquery/jqcloud-min',
         underscore : 'lib/underscore/underscore',
         backbone   : 'lib/backbone/backbone',
+        jqcloud    : 'lib/jquery/jqcloud-min',
         bootstrap  : 'lib/bootstrap/bootstrap'
     },
     shim: {

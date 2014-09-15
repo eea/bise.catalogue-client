@@ -20,7 +20,8 @@ module.exports = (grunt) ->
         'src/stylesheets/catalogue.bootstrap.styl',
         'src/stylesheets/catalogue.layout.styl'
         'src/stylesheets/catalogue.cells.styl',
-        'src/stylesheets/catalogue.pagination.styl'
+        'src/stylesheets/catalogue.pagination.styl',
+        'src/stylesheets/catalogue.cloud.styl'
       ]
 
     stylus:

@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 'views/results', 'views/facet', 'text!template/main.html'],
-  function($, _, Backbone, Bootstrap, ResultsCollection, ResultView, FacetView, mainTemplate){
+define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections/results', 'views/results', 'views/facet', 'text!template/main.html'],
+  function($, _, Backbone, jQCloud, Bootstrap, ResultsCollection, ResultView, FacetView, mainTemplate){
 
   var AppView = Backbone.View.extend({
 
@@ -46,10 +46,13 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
                 'mergeFacet', 'removeFacet', 'isFacetSelected',
                 'enableAdvancedSearch', 'enableBiseSearch')
 
+      // Fix for IE8
+      $.support.cors = true;
       this._checkIE();
 
       // Add main template
       $(this.$el.selector).append(this.mainTemplate)
+      this.queryparams.indexes = Object.keys(this.bise_indexes);
 
       this.host = options['host']
       this.refreshEndpoint()
@@ -59,8 +62,8 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       if (q != 'undefined' && q != '') this.queryparams.query = q
 
       // Run QUERY by default
-      this.queryparams.indexes = Object.keys(this.bise_indexes);
       this.runQuery()
+      this._renderStatistics()
     },
 
     // Minor fix to allow Object.keys in IE8
@@ -107,6 +110,7 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     },
 
     runQuery: function(){
+      console.log(':: runQuery..')
       this.Results.fetch({ data: $.param(this.queryparams) })
     },
 
@@ -120,20 +124,17 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       this.queryparams.page = 1
       this.queryparams.per = parseInt($(e.target).html());
       this.runQuery()
-      // this.Results.fetch({ data: $.param(this.queryparams) })
     },
     goPrevPage: function(e){
       if (this.queryparams.page > 1){
         this.queryparams.page -= 1;
         this.runQuery()
-        // this.Results.fetch({ data: $.param(this.queryparams) })
       }
     },
     goNextPage: function(e){
       if (this.queryparams.page < this._getLastPage()){
         this.queryparams.page += 1;
         this.runQuery()
-        // this.Results.fetch({ data: $.param(this.queryparams) })
       }
     },
     enableBiseSearch: function(e){
@@ -279,21 +280,72 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
       }
     },
 
-    _showNoResults: function(){
-      this.$('.catalogue-no-results').show()
-      if (this.queryparams.query && this.queryparams.query.length > 0)
-        this.$('.catalogue-no-results h1').html('No results found.')
-      else
-        this.$('.catalogue-no-results h1').html('')
-      this.$('.catalogue-content').hide()
+    _drawSuggestions: function(){
+      // TODO: Implement suggestions from ElasticSearch
+      // if (this.Results.suggestions){
+      //   var opts = this.Results.suggestions[1];
+      //   if (opts.length > 0){
+      //     opts = opts[0]
+      //     $('.catalogue-suggestions ul').html('')
+      //     for (var i=0; i < opts.options.length; i++){
+      //       var suggestion = opts.options[i];
+      //       var li = $('<li>').html(suggestion.text + ' with '+suggestion.score+'score')
+      //       $('.catalogue-suggestions').append(li)
+      //     }
+      //   }
+      // }
     },
 
     _showResults: function(){
+      this.$('.catalogue-container').show()
       this.$('.catalogue-no-results').hide()
-      this.$('.catalogue-content').show()
+      this.$('.catalogue-statistics').hide()
+      this.$('.catalogue-available-content').hide()
       this._drawPagination()
     },
 
+    _showNoResults: function(){
+      this.$('.catalogue-container').hide()
+      this.$('.catalogue-no-results').show()
+      this.$('.catalogue-statistics').show()
+      this.$('.catalogue-available-content').show()
+      // if (this.queryparams.query && this.queryparams.query.length > 0)
+      //   this.$('.catalogue-no-results').html('No results found.')
+      // else
+      //   this.$('.catalogue-no-results h1').html('')
+    },
+
+
+    // ------------------------  Cloud ----------------------------------------
+
+    _renderStatistics: function(){
+      console.log("http://"+this.host+"/api/v1/stats.json")
+      $.get("http://"+this.host+"/api/v1/stats.json", function( data ) {
+        // Show cloud tags
+        $('.catalogue-cloud-tags').jQCloud(data.tags);
+        // Render last added content
+        _.each(data.last, function(item){
+
+          var cell = $('<li>').addClass('catalogue-cell')
+          var link = $('<a>').attr('href', item.link).html(item.title)
+          cell.append($('<div>').addClass('cell-title').append(link))
+
+          var subtitle = $('<div>').addClass('cell-subtitle')
+          subtitle.append($('<strong>').html(item.type))
+          subtitle.append('&nbsp;').append(item.published_on)
+          cell.append(subtitle)
+
+          // $('.catalogue-last-added').append($('<li>').html(link))
+          $('.catalogue-last-added').append(cell)
+
+          // this.$("#catalogue-results").append(view.render().el)
+        });
+        // Render statistics
+        _.each(Object.keys(data.counts), function(item, count){
+          $('.catalogue-available-content .span2.'+item+' > h1').html(count)
+        });
+      });
+    },
 
     // ------------------------  FACETS ----------------------------------------
 
@@ -321,10 +373,12 @@ define(['jquery', 'underscore', 'backbone', 'bootstrap', 'collections/results', 
     // ------------------------  RENDER ----------------------------------------
 
     render: function() {
+      console.log(':: render...')
       this._drawSearches();
       this._drawCount();
       this._drawCategories();
       this._drawFacets();
+      this._drawSuggestions();
       if (this.Results.total == 0) this._showNoResults(); else this._showResults();
     },
     addOne: function(result) {

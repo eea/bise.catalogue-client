@@ -15,17 +15,121 @@
 
   .catalogue-sidebar
     width: 25.914893617021278%
-    float: left;
+    float: left
   .catalogue-content
     margin-left: 4%
     float: left
     width: 70%
+
+  .widget
+    border-radius(4px)
+    // border: 1px solid #dbdad8
+    padding: 14px 8px
+    margin-bottom: 20px
+    // background: lighten(BISE_GREEN, 70%)
+
+    &.widget-error
+      background-image: url('./assets/error.png')
+      background-repeat: no-repeat
+      background-position: 10px 10px, center
+      background-size: 64px 64px
+      padding-left: 80px
+
+      border: 1px solid #dd8488
+      color: #dd8488
+      .error-message
+        margin: 0
+        margin-bottom: 10px
+        font-weight: bold
+        color: #dd8488
+
+    h3.widget-heading
+      text-align: center
+      color: darken(BISE_GREEN, 40%)
+      margin: 0
+      margin-bottom: 12px
+      padding-bottom: 4px
+      font-size: 16px
+      font-weight: bold
+      border-bottom: 1px solid lighten(BISE_GREEN, 50%)
+    // h3
+    //   border-bottom: 1px solid #dbdad8
+
+  hr
+    border: 0
+    height: 0
+    border-top: 1px solid rgba(0, 0, 0, 0.1)
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3)
 
 .catalogue-toolbar
   border-radius(4px)
   padding: 12px
   margin-bottom: 35px
   background: BISE_GREEN
+
+.catalogue-suggestions
+  border: 0px solid red
+
+
+.catalogue-intro
+  .logo
+    background-image: url('./assets/logo.png')
+    background-repeat: no-repeat
+    background-position: 20px 0px, center
+    background-size: 142px 106px
+    height: 106px
+    width: 142px
+
+.catalogue-cloud-tags
+  min-height: 371px
+
+ul.catalogue-last-added
+  list-style: lower-roman
+  li
+    margin-bottom: 7px
+    > a
+      color: darken(BISE_GREEN, 40%)
+
+
+.catalogue-available-content
+  .span2
+    // background: #3C611D
+    background: #416104
+    padding: 18px 4px
+    text-align: center
+
+    > i
+      display: block
+      margin: 0 auto
+      height: 80px
+      width: 80px
+      background-repeat: no-repeat
+      background-size: 80px 80px
+
+    &.documents i
+      background-image: url('./assets/landing/ico-documents.png')
+    &.webpages i
+      background-image: url('./assets/landing/ico-web-pages.png')
+    &.links i
+      background-image: url('./assets/landing/ico-links.png')
+    &.sites i
+      background-image: url('./assets/landing/ico-protected-sites.png')
+    &.habitats i
+      background-image: url('./assets/landing/ico-habitats.png')
+    &.species i
+      background-image: url('./assets/landing/ico-species.png')
+
+    h1
+      color: white
+      font-size: 32px
+      margin: 0
+    strong
+      font-size: 13px
+      color: white
+      margin-bottom: 10px
+
+
+
 
 #catalogue-search-form
   margin: 0
@@ -293,22 +397,6 @@
     margin-bottom: 0
 
 .catalogue-no-results
-  height: 380px
-
-  h1
-    text-align: center
-    font-style: italic
-    font-size: 42px
-    position: relative
-    height: 100px
-    width: 90%
-    left: 50%
-    top: 50%
-    color: #bbbbbb
-    transform: translate(-50%, -50%)
-    -webkit-transform: translate(-50%, -50%)
-    -moz-transform: translate(-50%, -50%)
-    -ms-transform: translate(-50%, -50%)
 
 
 .catalogue-content
