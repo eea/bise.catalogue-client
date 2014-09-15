@@ -63,7 +63,6 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
 
       // Run QUERY by default
       this.runQuery()
-      this._renderStatistics()
     },
 
     // Minor fix to allow Object.keys in IE8
@@ -309,6 +308,7 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
       this.$('.catalogue-no-results').show()
       this.$('.catalogue-statistics').show()
       this.$('.catalogue-available-content').show()
+      this._renderStatistics()
       // if (this.queryparams.query && this.queryparams.query.length > 0)
       //   this.$('.catalogue-no-results').html('No results found.')
       // else
@@ -322,10 +322,12 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
       console.log("http://"+this.host+"/api/v1/stats.json")
       $.get("http://"+this.host+"/api/v1/stats.json", function( data ) {
         // Show cloud tags
-        $('.catalogue-cloud-tags').jQCloud(data.tags);
+
+        if (!$('.catalogue-cloud-tags').hasClass('jqcloud'))
+          $('.catalogue-cloud-tags').jQCloud(data.tags);
+
         // Render last added content
         _.each(data.last, function(item){
-
           var cell = $('<li>').addClass('catalogue-cell')
           var link = $('<a>').attr('href', item.link).html(item.title)
           cell.append($('<div>').addClass('cell-title').append(link))
@@ -334,11 +336,7 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
           subtitle.append($('<strong>').html(item.type))
           subtitle.append('&nbsp;').append(item.published_on)
           cell.append(subtitle)
-
-          // $('.catalogue-last-added').append($('<li>').html(link))
           $('.catalogue-last-added').append(cell)
-
-          // this.$("#catalogue-results").append(view.render().el)
         });
 
         // Render statistics
