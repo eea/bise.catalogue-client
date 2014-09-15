@@ -340,8 +340,9 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
 
           // this.$("#catalogue-results").append(view.render().el)
         });
+
         // Render statistics
-        _.each(Object.keys(data.counts), function(item, count){
+        _.each(data.counts, function(count, item){
           $('.catalogue-available-content .span2.'+item+' > h1').html(count)
         });
       });
