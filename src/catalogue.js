@@ -29,6 +29,9 @@ require.config({
         'bootstrap': {
             deps: ['jquery'],
             exports: 'Bootstrap'
+        },
+        'jqcloud': {
+            deps: ['jquery']
         }
     },
     tpl: {
