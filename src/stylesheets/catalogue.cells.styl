@@ -14,14 +14,7 @@ CELL_BEFORE_COLOR = #666666
 CELL_SMALL_COLOR = #999999
 
 
-
-
-
-
 .catalogue-cell
-
-  // border-bottom: 1px solid #cbcbcb
-  // border-bottom: 1px solid #d3d3d3
   border-bottom 1px dotted LIGHT_GRAY
   margin: 1em 0
   padding-top: 5px
@@ -34,17 +27,14 @@ CELL_SMALL_COLOR = #999999
 
   .cell-title
     font-size: 14px
-    // color: #86a000
     a
       cursor: pointer
       display: block
       font-size: 1.3em
-      // font-weight: bold
       color: BASE_GREEN
-      // color: darken(BISE_GREEN, 60%)
       text-overflow: ellipsis
-      overflow: hidden;
-      width: 90%
+      overflow: hidden
+      width: 81%
       white-space: nowrap
       word-wrap: normal
 
@@ -59,6 +49,9 @@ CELL_SMALL_COLOR = #999999
   .label.label-success
     font-size: 0.9em
     float: right
+    text-overflow: ellipsis
+    overflow: hidden
+    max-width: 100px
 
   .hits
     border-left: 3px solid #8ea04c
@@ -116,36 +109,59 @@ CELL_SMALL_COLOR = #999999
   background-size: 150px 150px
   background-repeat: none
   background-image: url('./assets/filetypes/default.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/default.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/default.png', sizingMethod='scale')"
+
 .pdf
   @extend .filetype
   background-image: url('./assets/filetypes/pdf.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/pdf.png', sizingMethod='scale')"
+  // -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/pdf.png', sizingMethod='scale')"
 .rtf
   @extend .filetype
   background-image: url('./assets/filetypes/rtf.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=''./assets/filetypes/rtf.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=''./assets/filetypes/rtf.png', sizingMethod='scale')"
 .word
   @extend .filetype
   background-image: url('./assets/filetypes/doc.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/doc.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/doc.png', sizingMethod='scale')"
 .word2010
   @extend .filetype
   background-image: url('./assets/filetypes/docx.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/docx.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/docx.png', sizingMethod='scale')"
 .csv
   @extend .filetype
   background-image: url('./assets/filetypes/csv.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/csv.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/csv.png', sizingMethod='scale')"
 .excel
   @extend .filetype
   background-image: url('./assets/filetypes/xls.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/xls.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/xls.png', sizingMethod='scale')"
 .excel2010
   @extend .filetype
   background-image: url('./assets/filetypes/xlsx.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/xlsx.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/xlsx.png', sizingMethod='scale')"
 .powerpoint
   @extend .filetype
   background-image: url('./assets/filetypes/ppt.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/ppt.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/ppt.png', sizingMethod='scale')"
 .powerpoint2010
   @extend .filetype
   background-image: url('./assets/filetypes/pptx.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/pptx.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/pptx.png', sizingMethod='scale')"
 .plaintext
   @extend .filetype
   background-image: url('./assets/filetypes/txt.png')
+  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/txt.png', sizingMethod='scale')"
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/filetypes/txt.png', sizingMethod='scale')"
 
 .mini-icon
   width: 36px
