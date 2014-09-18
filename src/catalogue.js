@@ -12,7 +12,7 @@ require.config({
             useXhr: function (url, protocol, hostname, port) {
                 return true
             }
-        },
+        }
     },
     paths: {
         text       : 'lib/require/text',

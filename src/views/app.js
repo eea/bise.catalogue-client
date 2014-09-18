@@ -63,6 +63,18 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
 
       // Run QUERY by default
       this.runQuery()
+
+      // If CORS not enabled in IE8, show message to activate it
+      if (this._isIE() === 8){
+        $('.catalogue-ie-msg').show()
+        // if(typeof XDomainRequest !== "undefined"){
+        //   //Use IE-specific "CORS" code with XDR
+        //   document.write("CORS supported (XDR)");
+        // } else{
+        //   //Time to retreat with a fallback or polyfill
+        //   document.write("No CORS Support!");
+        // }
+      }
     },
 
     // Minor fix to allow Object.keys in IE8
@@ -76,6 +88,12 @@ define(['jquery', 'underscore', 'backbone', 'jqcloud', 'bootstrap', 'collections
           return keys;
         };
       }
+    },
+
+    // Returns IE version or false
+    _isIE: function() {
+      var myNav = navigator.userAgent.toLowerCase();
+      return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
     },
 
     getEndpoint: function(){
