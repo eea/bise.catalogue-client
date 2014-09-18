@@ -33,7 +33,7 @@
   </ul>
 <% } else { %>
   <ul>
-    <% _.each(entries, function(e) { %>
+    <% _.each(entries.reverse(), function(e) { %>
       <li class="facet-item">
         <% d = new Date(e.time) %>
         <% if (Catalogue.isFacetSelected(title, d.getFullYear() )){ %>
