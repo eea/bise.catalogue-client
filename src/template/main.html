@@ -1,34 +1,10 @@
 
 <div class="catalogue-toolbar">
     <form id="catalogue-search-form">
-        <div class="row-fluid">
-            <div class="span4">
-                <p class="field switch">
-                    <input type="radio" id="bise-search" name="searchtype" value="bise" checked="checked" />
-                    <input type="radio" id="advanced-search" name="searchtype" value="advanced" />
-                    <label for="bise-search" class="bise-search selected">
-                        <span>BISE Search</span>
-                    </label>
-                    <label for="advanced-search" class="advn-search">
-                        <span>Advanced</span>
-                    </label>
-                </p>
-            </div>
-            <div class="span6">
-                <input id="query" name="query" type="text"
-                       class="input-medium search-query"
-                       placeholder="Search..." autofocus="true">
-            </div>
-            <div class="span2">
-                <button type="submit">&nbsp;&nbsp;Search</button>
-            </div>
-            <div class="span3" style="display:none;">
-                <div class="select-field">
-                    <span class="arrow-down"></span>
-                    <select id="catalogue-area"></select>
-                </div>
-            </div>
-        </div>
+        <input id="query" name="query" type="text"
+               class="input-medium search-query"
+               placeholder="Search..." autofocus="true">
+        <button type="submit">&nbsp;&nbsp;Search</button>
     </form>
 </div>
 
@@ -98,8 +74,6 @@
 </div>
 
 
-
-
 <!--
 <div class="catalogue-map-count widget">
   <h3 class="widget-heading">Content per Country</h3>
@@ -108,25 +82,39 @@
 -->
 
 
+<div class="catalogue-libraries"></div>
+
+
+<div class="catalogue-navigation-bar">
+  <span class="catalogue-query">
+    for <em>...</em> (0 results)
+  </span>
+  <div class="catalogue-options" style="float:right">
+      <div class="btn-group">
+          <a class="btn dropdown-toggle" data-toggle="dropdown">
+              Per Page
+              <span class="caret"></span>
+          </a>
+          <ul id="catalogue-per-page" class="dropdown-menu">
+              <li>
+                  <a>10</a>
+              </li>
+              <li>
+                  <a>20</a>
+              </li>
+              <li>
+                  <a>30</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+
 <div class="catalogue-container">
-
-    <div class="catalogue-sidebar">
-        <div id="catalogue-queries" style="display: block; ">
-            <ul></ul>
-            <div id="results-count">0 results.</div>
-        </div>
-        <div id="catalogue-categories"></div>
-        <div id="catalogue-facets"></div>
-    </div>
-
-    <!--
-    <div class="catalogue-no-results">
-        <h1></h1>
-    </div>
-    -->
 
     <div class="catalogue-content span8" style="">
 
+        <!--
         <div class="row-fluid" style="padding-bottom: 15px">
             <div class="span5">
                 <div class="catalogue-options">
@@ -157,6 +145,7 @@
                 </ul>
             </div>
         </div>
+        -->
 
         <ul id="catalogue-results" style=""></ul>
 
@@ -170,8 +159,19 @@
                 </ul>
             </div>
         </div>
-
     </div>
+
+    <div class="catalogue-sidebar">
+        <!--
+        <div id="catalogue-queries" style="display: block; ">
+            <ul></ul>
+            <div id="results-count">0 results.</div>
+        </div>
+        -->
+        <div id="catalogue-categories"></div>
+        <div id="catalogue-facets"></div>
+    </div>
+
 </div>
 
 

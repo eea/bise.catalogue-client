@@ -13,20 +13,99 @@
 #catalogue-app
   font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
-  .catalogue-sidebar
-    width: 25.914893617021278%
-    float: left
+  .catalogue-toolbar
+    border-radius(4px)
+    padding: 12px 100px
+    margin-bottom: 20px
+    background: #EEE
+
+    #catalogue-search-form
+      margin: 0
+      // display: inline-table
+      // vertical-align: middleEEE
+
+      input
+        border: 2px solid darken(BISE_GREEN, 15%)
+        -webkit-border-radius: 4px 0 0 4px !important
+        border-radius: 4px 0 0 4px !important
+
+        padding 10px 15px
+        margin: 0
+        // margin-left: 1.404255319148934%
+        width: 75%
+        font-size: 14px
+        line-height: 20px
+
+      button
+        -webkit-border-radius: 0 4px 4px 0 !important
+        border-radius: 0 4px 4px 0 !important
+        background: BISE_GREEN
+        background-image: url('./assets/search.png')
+        background-repeat: no-repeat
+        background-position: 12px 8px, center
+        background-size: 25px 25px
+        height: 44px
+        width: 25%
+        text-align: center
+        cursor: pointer
+        border: 2px solid darken(BISE_GREEN, 15%)
+        padding: 10px 15px
+        color: white
+        font-size: 1em
+        line-height: 20px
+        float: right
+
+  .catalogue-libraries
+    margin-top: 40px
+    ul
+      list-style: inline
+      padding-bottom: 15px
+      border-bottom: 1px solid #CCC
+      li
+        display: inline
+        a
+          padding: 15px
+          cursor: pointer
+          &:hover
+            background: lighten(#176D51, 5%)
+            color: white
+          &.active
+            border-bottom: 9px solid #176D51
+            padding-bottom: 6px
+            &:hover
+              background: #f0938c
+              color: white
+              font-weight: bold
+
+
+  .catalogue-navigation-bar
+    height: 30px
+    // background: orange
+    padding: 10px 0
+    margin-bottom: 10px
+    border-bottom: 1px solid #EEE
+    span
+      color: #989898
+      font-size: 20px
+      display: inline-block
+      em
+        color: #2f2f2f
+        font-size: 24px
+        text-transform: capitalize
+
   .catalogue-content
-    margin-left: 4%
+    margin-left: 0
     float: left
     width: 70%
 
+  .catalogue-sidebar
+    width: 25.914893617021278%
+    float: right;
+
   .widget
     border-radius(4px)
-    // border: 1px solid #dbdad8
     padding: 14px 8px
     margin-bottom: 20px
-    // background: lighten(BISE_GREEN, 70%)
 
     &.widget-error
       background-image: url('./assets/error.png')
@@ -34,7 +113,6 @@
       background-position: 10px 10px, center
       background-size: 64px 64px
       padding-left: 80px
-
       border: 1px solid #dd8488
       color: #dd8488
       .error-message
@@ -52,20 +130,12 @@
       font-size: 16px
       font-weight: bold
       border-bottom: 1px solid lighten(BISE_GREEN, 50%)
-    // h3
-    //   border-bottom: 1px solid #dbdad8
 
   hr
     border: 0
     height: 0
     border-top: 1px solid rgba(0, 0, 0, 0.1)
     border-bottom: 1px solid rgba(255, 255, 255, 0.3)
-
-.catalogue-toolbar
-  border-radius(4px)
-  padding: 12px
-  margin-bottom: 20px
-  background: BISE_GREEN
 
 .catalogue-suggestions
   border: 0px solid red
@@ -127,126 +197,6 @@ ul.catalogue-last-added
       font-size: 13px
       color: white
       margin-bottom: 10px
-
-
-
-
-#catalogue-search-form
-  margin: 0
-
-  .field.switch
-    border-radius(4px)
-    width: 102%
-    height: 40px
-    -webkit-margin-before: 0
-    -webkit-margin-after: 0
-    margin-left: -5px
-    margin-top: 0px
-    margin-bottom: -10px
-
-
-    .bise-search, .advn-search
-      span
-        width: 45%
-        height: 30px
-        line-height: 26px
-        float: left
-        color: white
-        background-color: darken(BISE_GREEN, 15%)
-        border: 2px solid darken(BISE_GREEN, 15%)
-        border-bottom: 0
-        text-align: center
-        padding: 12px 1px
-        margin-bottom: -20px
-
-    .advn-search
-      span
-        margin-left: 7px
-        // border-left: 0
-
-    .bise-search.selected, .advn-search.selected
-      span
-        background-color: white
-        color: darken(DARK_GREEN, 30%)
-        border: 2px solid DARK_GREEN
-        border-bottom: 0
-
-    label
-      cursor: pointer
-    input
-      display: none
-
-
-
-  .select-field
-    width: 100%
-    // overflow:hidden
-    position: relative
-
-    background: BISE_GREEN
-    border-radius(4px)
-    border: 2px solid darken(BISE_GREEN, 15%)
-    padding 0px 2px
-
-    .arrow-down
-      position: absolute
-      right: 10px
-      width: 0
-      height: 0
-      border-left: 8px solid transparent
-      border-right: 8px solid transparent
-      border-top: 8px solid DARK_GREEN
-      margin-top: 15px
-
-    select
-      color: white
-      font-size: 0.9em
-      // float:left
-      width: 100%
-      height 40px
-      padding-left: 20px
-
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-
-      border: none;
-      background: transparent
-
-
-
-  input
-    padding 10px 15px
-    // padding: 4px 6px
-    margin: 0
-    margin-left: 1.404255319148934%
-    width: 100%
-
-    border-radius(4px)
-    border: 2px solid darken(BISE_GREEN, 15%)
-    // border: 2px solid white
-
-    font-size: 14px
-    line-height: 20px
-
-
-  button
-    border-radius(5px)
-    background: BISE_GREEN
-    background-image: url('./assets/search.png')
-    background-repeat: no-repeat
-    background-position: 12px 8px, center
-    background-size: 25px 25px
-    height: 44px
-    width: 100%
-    text-align: center
-    cursor: pointer
-    border: 2px solid darken(BISE_GREEN, 15%)
-    margin: 0 7px
-    padding: 10px 15px
-    color: white
-    font-size: 1em
-    line-height: 20px
 
 
 
@@ -323,8 +273,8 @@ ul.catalogue-last-added
   font-size: 14px
 
   .facet-header
-    padding: 6px 7px
-    background: LIGHT_GRAY
+    padding: 10px 10px
+    background: #EEE
 
     legend
       position: relative
@@ -362,8 +312,8 @@ ul.catalogue-last-added
         border-bottom: 1px solid #d7d7d7
         padding: 10px 12px
         &:hover
-          color: white
-          background: BISE_GREEN
+          // color: white
+          color: #307A61
 
       .facet-count
         float: right
@@ -376,15 +326,27 @@ ul.catalogue-last-added
         margin-top: 6px
 
       .facet-remove
-        // border-radius(5px)
+        border-radius(4px)
         font-size: 0.7em
         font-weight: bold
-        padding: 4px 7px
+        padding: 6px 7px
         border: 1px solid #c40000
         color: #c40000 !important
         float: right
         margin-right: 5px
         margin-top: 4px
+
+        background: #c40000 !important
+        color: white !important
+        &:hover
+          // background: #c40000 !important
+          // color: white !important
+          -moz-transform: scale(1.10) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+          -webkit-transform: scale(1.10) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+          -o-transform: scale(1.10) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+          -ms-transform: scale(1.10) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+          transform: scale(1.10) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+
     li.show-more
       a
         text-align: center
@@ -392,7 +354,7 @@ ul.catalogue-last-added
         color: #386d03
         &:hover
           background: #386d03
-          color: white
+          color: white !important
 
   ul.first-five
     li.facet-item:nth-child(n+6)
@@ -406,6 +368,9 @@ ul.catalogue-last-added
     margin-bottom: 0
 
 .catalogue-no-results
+  color: #E74C3C !important
+  h3
+    color: #E74C3C !important
 
 
 .catalogue-content
@@ -449,6 +414,6 @@ ul#catalogue-results
   font-family: Helvetica, sans-serif
   font-size: 14px
 
-  border-top: 1px solid #999999
+  // border-top: 1px solid #999999
   padding-top: 10px
-  margin-top: 10px
+  // margin-top: 10px
