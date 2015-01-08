@@ -21,13 +21,11 @@ define(['jquery', 'underscore', 'backbone', 'models/library', 'text!template/lib
     },
 
     clearAllLibraries: function(e){
-      console.log(':: clearAllLibraries...')
       el = $(e.currentTarget)
       Catalogue.removeFacet('site')
     },
 
     toggleFilter: function(e) {
-      console.log(':: toggleFilter...')
       el = $(e.currentTarget)
       if (Catalogue.isFacetSelected(el.data('facet'), el.data('value'))) {
         Catalogue.removeFacet(el.data('facet'))

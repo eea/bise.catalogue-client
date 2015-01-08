@@ -79,7 +79,7 @@ define([
     showResult: function(e){
       e.preventDefault()
       if (this.model.attributes._type === "document"){
-        console.log('document previewing...')
+        // console.log('document previewing...')
       }
       if (this.model.attributes._type === "protected_area"){
         ifr = this.$el.find('iframe')

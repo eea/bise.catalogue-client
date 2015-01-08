@@ -12,7 +12,6 @@ define(['underscore', 'backbone', 'models/result'], function(_, Backbone, Result
     parse: function(data) {
       this.total = data.total
       this.facets = data.facets
-      // this.suggestions = data.suggestions[0]
       this.counts = data.counts
       return data.results;
     }

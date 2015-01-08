@@ -9,35 +9,42 @@
 
 @import 'catalogue.mixin.styl'
 
+// Fix for Plone
+#content ul
+  list-style: none !important
+  margin: 0 !important
+  padding: 0 !important
+  li
+    margin-bottom: 0
+
 
 #catalogue-app
   font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
   .catalogue-toolbar
     border-radius(4px)
-    padding: 12px 100px
-    margin-bottom: 20px
-    background: #EEE
+    padding: 12px 5%
+    margin-bottom: 5px
+    // background: #EEE
 
     #catalogue-search-form
       margin: 0
-      // display: inline-table
-      // vertical-align: middleEEE
+      width: 100%
 
       input
         border: 2px solid darken(BISE_GREEN, 15%)
+        border-right: 0
         -webkit-border-radius: 4px 0 0 4px !important
         border-radius: 4px 0 0 4px !important
-
         padding 10px 15px
         margin: 0
-        // margin-left: 1.404255319148934%
         width: 70%
         font-size: 14px
         line-height: 20px
 
       button
         -webkit-border-radius: 0 4px 4px 0 !important
+        border: 2px solid darken(BISE_GREEN, 15%)
         border-radius: 0 4px 4px 0 !important
         background: BISE_GREEN
         background-image: url('./assets/search.png')
@@ -45,21 +52,32 @@
         background-position: 12px 8px, center
         background-size: 25px 25px
         height: 44px
-        width: 25%
+        width: 26.1%
         text-align: center
         cursor: pointer
-        border: 2px solid darken(BISE_GREEN, 15%)
         padding: 10px 15px
         color: white
         font-size: 1em
         line-height: 20px
         float: right
 
+  .catalogue-loading
+    height: 25px
+    .gif
+      background-image: url('./assets/ajax-loader.gif')
+      background-repeat: no-repeat
+      background-position: center, center
+      background-size: 43px 11px
+      margin: 0 auto
+      margin-top: 7px
+      display: block
+      height: 15px
+
   .catalogue-libraries
-    margin-top: 40px
+    margin-top: -10px
     ul
       list-style: inline
-      padding-bottom: 15px
+      padding-bottom: 12px !important;
       border-bottom: 1px solid #CCC
       li
         display: inline
@@ -74,10 +92,9 @@
             border-bottom: 9px solid #176D51
             padding-bottom: 6px
             &:hover
+              border-bottom: 9px solid darken(#f0938c, 20%)
               background: #f0938c
               color: white
-              font-weight: bold
-
 
   .catalogue-navigation-bar
     height: 30px
@@ -104,7 +121,7 @@
     float: right;
 
   .widget
-    border-radius(4px)
+    // border-radius(4px)
     padding: 14px 8px
     margin-bottom: 20px
 
@@ -113,7 +130,7 @@
       background-repeat: no-repeat
       background-position: 10px 10px, center
       background-size: 64px 64px
-      padding-left: 80px
+      padding-left: 90px
       border: 1px solid #dd8488
       color: #dd8488
       .error-message
@@ -126,11 +143,11 @@
       text-align: center
       color: darken(BISE_GREEN, 40%)
       margin: 0
-      margin-bottom: 12px
+      margin-bottom: 17px
       padding-bottom: 4px
       font-size: 16px
       font-weight: bold
-      border-bottom: 1px solid lighten(BISE_GREEN, 50%)
+      border-bottom: 1px solid darken(BISE_GREEN, 40%)
 
   hr
     border: 0
@@ -239,10 +256,15 @@ ul.catalogue-last-added
     text-align: left
 
 
+#catelogue-categories-menu
+  padding: 5px 15px
+  background: #295728
+  color: white
+  // border: 1px solid red
 
 #catalogue-categories
   border-radius(3px)
-  padding 7px
+  // padding 7px
   border: 1px solid LIGHT_GRAY
   margin-bottom 10px
   font-size: 14px
@@ -261,6 +283,22 @@ ul.catalogue-last-added
     background: orange
 
 
+  .catalogue-category
+    padding: 8px 10px
+    border-bottom: 1px solid #CCC
+    border-left: 10px solid #295728
+    &:hover
+      background: #eff4f5
+      border-left: 10px solid #295728
+
+    &.checked
+      border-left: 10px solid #63a00c
+      &:hover
+        background: #eff4f5
+        border-left: 10px solid #63a00c
+
+    input[type='checkbox'], label
+      cursor: pointer
 
 
 
@@ -282,10 +320,10 @@ ul.catalogue-last-added
       cursor: pointer
       width: 90%
       padding: 0 2px !important
-      color: DARK_GRAY
+      color: #252525
       font-size: 0.9em
       width: 94%
-      font-weight: bold
+      font-weight: normal
 
     .triangle
       margin-top: -10px
@@ -361,14 +399,8 @@ ul.catalogue-last-added
     li.facet-item:nth-child(n+6)
       display: none !important
 
-#content ul
-  list-style: none !important
-  margin: 0 !important
-  padding: 0 !important
-  li
-    margin-bottom: 0
-
 .catalogue-no-results
+  margin: 10px 8px
   color: #E74C3C !important
   h3
     color: #E74C3C !important

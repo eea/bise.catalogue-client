@@ -14,18 +14,11 @@ define([
     mainTemplate: _.template(mainTemplate),
 
     bise_indexes: {
-      documents: 'Documents',
-      links: 'Links',
-      articles: 'Web Pages'
+      documents: 'Documents', links: 'Links', articles: 'Web Pages'
     },
-
     all_indexes: {
-      documents: 'Documents',
-      links: 'Links',
-      articles: 'Web Pages',
-      species: 'Species',
-      habitats: 'Habitat types',
-      protected_areas: 'Sites'
+      documents: 'Documents', links: 'Links', articles: 'Web Pages',
+      species: 'Species Info', habitats: 'Habitat Types Info', protected_areas: 'Sites Info'
     },
 
     // Structure to query backend
@@ -57,6 +50,8 @@ define([
 
       // Options
       this.host = options['host']
+
+      // Check search type
       if (this.$el.data('type') === 'advanced'){
         this.searchType = 'advanced'
         this.queryparams.indexes = Object.keys(this.all_indexes);
@@ -64,7 +59,6 @@ define([
         this.searchType = 'bise'
         this.queryparams.indexes = Object.keys(this.bise_indexes);
       }
-      this.refreshEndpoint()
 
       // Get query
       q = this.$el.data('query')
@@ -74,46 +68,16 @@ define([
       if (this._isIE() === 8){
         $('.catalogue-ie-msg').show()
       }
+
+      this.refreshEndpoint()
       this.runQuery()
     },
 
+    /***************************************************************************
+     * Catalogue methods
+     **************************************************************************/
 
-    /*
-     * Minor fix to allow Object.keys in IE8
-     */
-    _checkIE: function(){
-      if (!Object.keys) {
-        Object.keys = function(obj) {
-          var keys = [];
-          for (var i in obj) {
-            if (obj.hasOwnProperty(i)) keys.push(i);
-          }
-          return keys;
-        };
-      }
-    },
-
-    /*
-     * Returns IE version or false
-     */
-    _isIE: function() {
-      var myNav = navigator.userAgent.toLowerCase();
-      return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
-    },
-
-    /*
-     * Returns API endpoint (BISE or Advanced Search)
-     */
-    _getEndpoint: function(){
-      this.url = 'http://'+this.host+'/api/v1/'
-      if (this.searchType === 'advanced') this.url += 'search'
-      else this.url += 'bise_search'
-      return this.url;
-    },
-
-    /*
-     * Refresh data from endpoint
-     */
+    // Refresh data from endpoint
     refreshEndpoint: function(){
       this.Results = new ResultsCollection(this._getEndpoint())
       this.Results.bind('add', this.addOne)
@@ -121,28 +85,25 @@ define([
       this.Results.bind('all', this.render)
     },
 
+    runQuery: function(){
+      $('.catalogue-loading .gif').show()
+      this.Results.fetch({ data: $.param(this.queryparams) })
+    },
+
     fillQueryAndRun: function(e){
-      console.log(':: fillQueryAndRun...')
       e.preventDefault()
       var q = $('#catalogue-search-form #query').val()
+      if (q === 'undefined') q = ''
       $('#catalogue-search-form input').val('')
       this.queryparams = {
         indexes: this._getSelectedCategories(),
         query: q.replace(/(<([^>]+)>)/ig,""),
         page: 1, per: 10
       }
-      this._drawSearches()
       this.runQuery()
     },
 
-    runQuery: function(){
-      this.Results.fetch({ data: $.param(this.queryparams) })
-    },
-
-    /***************************************************************************
-     * Search Options
-     **************************************************************************/
-
+    // Search Options
     setSorting: function(e){
       this.queryparams.sort = $('#catalogue-sort select').val()
       this.runQuery()
@@ -167,8 +128,37 @@ define([
 
 
     /*
-     * Returns array of selected indexes
+     * PRIVATE METHODS
      */
+
+    // Minor fix to allow Object.keys in IE8
+    _checkIE: function(){
+      if (!Object.keys) {
+        Object.keys = function(obj) {
+          var keys = [];
+          for (var i in obj) {
+            if (obj.hasOwnProperty(i)) keys.push(i);
+          }
+          return keys;
+        };
+      }
+    },
+
+    // Returns IE version or false
+    _isIE: function() {
+      var myNav = navigator.userAgent.toLowerCase();
+      return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    },
+
+    // Returns API endpoint (BISE or Advanced Search)
+    _getEndpoint: function(){
+      this.url = 'http://'+this.host+'/api/v1/'
+      if (this.searchType === 'advanced') this.url += 'search'
+      else this.url += 'bise_search'
+      return this.url;
+    },
+
+    // Returns array of selected indexes
     _getSelectedCategories: function(){
       var array = _.map(this.$('#catalogue-categories input:checked'), function (x){
         return $(x).val()
@@ -179,9 +169,7 @@ define([
       return array
     },
 
-    /*
-     * Render the pagination with Bootstrap style
-     */
+    // Render the pagination with Bootstrap style
     _drawPagination: function(){
       this.$el.find('.catalogue-status').html(this.queryparams.page+'/'+this._getLastPage())
 
@@ -200,31 +188,17 @@ define([
       return pages;
     },
 
-    /*
-     * Renders the performed search information
-     */
+    // Renders the performed search information
     _drawSearches: function(){
-      if (this.queryparams.query != '' && this.queryparams.query != undefined){
-        text = 'for <em>' + this.queryparams.query + '</em>'
-        this.$('.catalogue-query').html(text)
-      } else {
-        this.$('.catalogue-query em').html('...')
-      }
+      var text = '';
+      if (this.queryparams.query != '' && this.queryparams.query != undefined)
+        text = text.concat('for <em>' + this.queryparams.query + '</em>. ')
+      if (this.Results.total != undefined)
+        text = text.concat('<small>(' + this.Results.total + ' results)</small>')
+      this.$('.catalogue-query').html(text)
     },
 
-    /*
-     * Renders the number of results
-     */
-    _drawCount: function(){
-      if (this.Results.total == undefined)
-        this.$('#results-count').html("No search")
-      else
-        this.$('#results-count').html('<strong>' + this.Results.total + '</strong> results.')
-    },
-
-    /*
-     * Renders Library filters
-     */
+    // Renders Library filters
     _drawLibraries: function(){
       if (_.has(this.Results.facets, 'site')){
         facet = this.Results.facets['site']
@@ -236,68 +210,33 @@ define([
           el: this.$('.catalogue-libraries ul'),
           model: m
         }).render()
-
-        // sdlkfjdslkfj
-        // var li = $('<li>').append($('<a>').html('All Libraries'))
-        // this.$('.catalogue-libraries ul').append(li)
-        // for (var i=0; i < facet.terms.length; i++){
-        //   var term = facet.terms[i]
-        //   var lbl = term.term + ' (' + term.count + ')'
-        //   var li = $('<li>').append($('<a>').html(lbl))
-        //   this.$('.catalogue-libraries ul').append(li)
-        // }
-
-        // this.$('.catalogue-libraries ul > li > a').on('click', $.proxy(this.fillQueryAndRun, this))
       } else {
         console.log(':: no facet for libraries...')
       }
     },
 
-    /*
-     * Renders available categories
-     */
+    // Renders available categories
     _drawCategories: function(){
       this.$("#catalogue-categories").html('');
-
-      var input;
-      if (this.searchType === 'advanced'){
-        for (var k in this.all_indexes){
-          var checked = _.contains(this.queryparams.indexes, k)
-          if (this.queryparams.indexes.length == 0) checked = true;
-          input = $('<input>').attr({
-            type: 'checkbox',
-            id:   k,
-            name: k,
-            value: k,
-            checked: checked
-          });
-          this._addWrappedCategory(input, k)
-        }
-      } else {
-        for (var k in this.bise_indexes){
-          var checked = _.contains(this.queryparams.indexes, k)
-          if (this.queryparams.indexes.length == 0) checked = true;
-          input = $('<input>').attr({
-            type: 'checkbox',
-            id:   k,
-            name: k,
-            value: k,
-            checked: checked
-          })
-          this._addWrappedCategory(input, k)
-        }
-      }
-      this.$('#catalogue-categories input').on('change', $.proxy(this.fillQueryAndRun, this))
+      if (this.searchType === 'advanced')
+        for (var k in this.all_indexes) this._addWrappedCategory(k)
+      else for (var k in this.bise_indexes) this._addWrappedCategory(k)
+      this.$('#catalogue-categories input').on(
+        'change', $.proxy(this.fillQueryAndRun, this));
     },
-
-    _addWrappedCategory: function(input, key){
+    _addWrappedCategory: function(key, checked){
+      var checked = _.contains(this.queryparams.indexes, key)
+      if (this.queryparams.indexes.length == 0) checked = true;
+      var input = $('<input>').attr({
+        type: 'checkbox', id: key, name: key, value: key, checked: checked
+      });
       var label = $('<label>').append(input).append(this.all_indexes[key])
-      this.$("#catalogue-categories").append(label).append('<br>')
+      var category = $('<div class="catalogue-category">').append(label)
+      if (checked) category.addClass('checked')
+      this.$("#catalogue-categories").append(category)
     },
 
-    /*
-     * Renders facets on sidebar
-     */
+    // Renders facets on sidebar
     _drawFacets: function(){
       this.$("#catalogue-facets").html('')
       if (this.Results.total > 0){
@@ -323,53 +262,40 @@ define([
       }
     },
 
-    /*
-     * TODO: Add suggestions for searches
-     */
+    // TODO: Add suggestions for searches
     _drawSuggestions: function(){
-      // TODO: Implement suggestions from ElasticSearch
-      // if (this.Results.suggestions){
-      //   var opts = this.Results.suggestions[1];
-      //   if (opts.length > 0){
-      //     opts = opts[0]
-      //     $('.catalogue-suggestions ul').html('')
-      //     for (var i=0; i < opts.options.length; i++){
-      //       var suggestion = opts.options[i];
-      //       var li = $('<li>').html(suggestion.text + ' with '+suggestion.score+'score')
-      //       $('.catalogue-suggestions').append(li)
-      //     }
-      //   }
-      // }
+
     },
 
-
-    /*
-     * Show / Hide different sections when results found or not.
-     */
+    // Show / Hide different sections when results found or not.
     _showResults: function(){
+      this.$('.catalogue-libraries').show()
       this.$('.catalogue-container').show()
+      this.$('.catalogue-navigation-bar').show()
+
       this.$('.catalogue-no-results').hide()
       this.$('.catalogue-statistics').hide()
       this.$('.catalogue-available-content').hide()
-      this.$('.catalogue-libraries').show()
-      this.$('.catalogue-navigation-bar').show()
-
       this._drawPagination()
     },
     _showNoResults: function(){
+      this.$('.catalogue-libraries').hide()
       this.$('.catalogue-container').hide()
+      this.$('.catalogue-navigation-bar').hide()
+
       this.$('.catalogue-no-results').show()
       this.$('.catalogue-statistics').show()
       this.$('.catalogue-available-content').show()
-      this.$('.catalogue-libraries').hide()
-      this.$('.catalogue-navigation-bar').hide()
       this._renderStatistics()
+      // Reset categories, if nothing found
+      if (this.$el.data('type') === 'advanced')
+        this.queryparams.indexes = Object.keys(this.all_indexes);
+      else
+        this.queryparams.indexes = Object.keys(this.bise_indexes);
     },
 
 
-    /*
-     * Renders statistics if no results found...
-     */
+    // Renders statistics if no results found...
     _renderStatistics: function(){
       $.get("http://"+this.host+"/api/v1/stats.json", function( data ) {
         // Show cloud tags
@@ -400,7 +326,6 @@ define([
     /***************************************************************************
      * FACETS
      **************************************************************************/
-
     mergeFacet: function(key, value){
       this.queryparams[key] = value
       this.queryparams['page'] = 1
@@ -426,17 +351,18 @@ define([
       return false
     },
 
-    /*
-     * Backbone Render method
-     */
+    /***************************************************************************
+     * Backbone
+     **************************************************************************/
     render: function() {
       this._drawSearches();
-      this._drawCount();
       this._drawLibraries();
       this._drawCategories();
       this._drawFacets();
       this._drawSuggestions();
-      if (this.Results.total == 0) this._showNoResults(); else this._showResults();
+      if (this.Results.total == 0)
+        this._showNoResults(); else this._showResults();
+      $('.catalogue-loading .gif').hide()
     },
     addOne: function(result) {
       var view = new ResultView({model: result})

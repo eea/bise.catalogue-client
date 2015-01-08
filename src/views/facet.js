@@ -10,20 +10,20 @@ define(['jquery', 'underscore', 'backbone', 'models/facet', 'text!template/facet
     isShowingFirstTen: true,
 
     titles: {
-      site: 'Source',
-      author: 'Author',
-      countries: 'Country',
-      biographical_region: 'Biogeographical Region',
-      languages: 'Language',
-      source_db: 'Source Dataset',
-      kingdom: 'Kingdom',
-      phylum: 'Phylum',
-      classis: 'Classis',
-      species_group: 'Species Group',
-      taxonomic_rank: 'Taxonomic Rank',
-      genus: 'Genus',
-      published_on: 'Timeline',
-      strategytarget: 'Biodiversity Strategy Targets'
+      site: 'By Source',
+      author: 'By Author',
+      countries: 'By Country',
+      biographical_region: 'By Biogeographical Region',
+      languages: 'By Language',
+      source_db: 'By Source Dataset',
+      kingdom: 'By Kingdom',
+      phylum: 'By Phylum',
+      classis: 'By Classis',
+      species_group: 'By Species Group',
+      taxonomic_rank: 'By Taxonomic Rank',
+      genus: 'By Genus',
+      published_on: 'By Published Year',
+      strategytarget: 'By Biodiversity Strategy Targets'
     },
 
     events: {

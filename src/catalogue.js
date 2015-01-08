@@ -37,16 +37,6 @@ require.config({
     tpl: {
         extension: '.html'
     }
-    // map: {
-    //     // '*' means all modules will get 'jquery-private'
-    //     // for their 'jquery' dependency.
-    //     '*': { 'jquery': 'jq-priv' },
-
-    //     // 'jquery-private' wants the real jQuery module
-    //     // though. If this line was not here, there would
-    //     // be an unresolvable cyclic dependency.
-    //     'jq-priv': { 'jquery': 'jquery' }
-    // }
 });
 
 require(['views/app'], function(AppView){
