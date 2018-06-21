@@ -46,3 +46,4 @@ require(['views/app'], function(AppView){
         // host: 'bise.catalogue.dev'
     })
 });
+
